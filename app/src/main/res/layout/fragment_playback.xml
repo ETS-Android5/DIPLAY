@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/Theme.DIPLAY"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/fragment_playback_scene"
+    tools:context=".PlaybackFragment"
+    tools:visibility="visible">
+
+    <!-- Nav -->
+
+    <View
+        android:id="@+id/viewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:alpha="1"
+        android:background="@drawable/playback_background_rounded"
+        app:layout_constraintBottom_toTopOf="@id/navigationBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/viewFull"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:alpha="0"
+        android:background="@drawable/background_gradient"
+        android:clickable="false"
+        android:focusable="false"
+        app:layout_constraintBottom_toTopOf="@id/navigationBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <View
+        android:id="@+id/clickableView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:alpha="1"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toTopOf="@id/navigationBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:alpha="1"
+        android:background="?android:attr/windowBackground"
+        android:elevation="16dp"
+        android:padding="8dp"
+        android:theme="@style/font_nav"
+        app:cnb_menuResource="@menu/bottom_menu"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </com.ismaeldivita.chipnavigation.ChipNavigationBar>
+
+    <!-- Full screen -->
+
+    <ImageButton
+        android:id="@+id/minimizeButton"
+        android:layout_width="30dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="35dp"
+        android:alpha="0"
+        android:visibility="invisible"
+        android:background="@drawable/ic_fluent_chevron_down_20_regular"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/nameSource"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textSource" />
+
+    <TextView
+        android:id="@+id/textSource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:alpha="0"
+        android:fontFamily="@font/productsans_regular"
+        android:text="PLAYING FROM PLAYLIST"
+        android:textColor="#B3FFFFFF"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nameSource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:fontFamily="@font/productsans_bold"
+        android:text="My Weekend"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textSource" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerPlayback"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageSong"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:cardCornerRadius="150dp"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintBottom_toBottomOf="@id/viewBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewBackground">
+        <ImageView
+            android:id="@+id/imageSong_source"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/album_art"
+            android:src="@drawable/playlists"/>
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/nameSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/productsans_medium"
+        android:maxLines="1"
+        android:text="Hom nay toi buon"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_medium"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/imageSong"
+        app:layout_constraintEnd_toStartOf="@id/heartButton"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/imageSong"
+        app:layout_constraintTop_toTopOf="@id/imageSong"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <TextView
+        android:id="@+id/nameSinger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/productsans_light"
+        android:maxLines="1"
+        android:text="Phung Khanh Linh"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/heartButton"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/nameSong"
+        app:layout_constraintTop_toBottomOf="@id/nameSong" />
+
+    <!-- Start | Button on top of SeekBar -->
+
+    <ImageButton
+        android:id="@+id/heartButton"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/ic_fluent_heart_24_regular"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/viewBackground"
+        app:layout_constraintEnd_toStartOf="@id/buttonPlay"
+        app:layout_constraintTop_toTopOf="@id/viewBackground" />
+
+    <ImageButton
+        android:id="@+id/addPlaylistButton"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginRight="90dp"
+        android:alpha="0"
+        android:background="@drawable/ic_fluent_add_24_regular"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/heartButton"
+        app:layout_constraintRight_toLeftOf="@id/heartButton"
+        app:layout_constraintTop_toTopOf="@id/heartButton" />
+
+    <ImageButton
+        android:id="@+id/menuButton"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="90dp"
+        android:alpha="0"
+        android:background="@drawable/ic_fluent_more_vertical_20_regular"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/heartButton"
+        app:layout_constraintLeft_toRightOf="@id/heartButton"
+        app:layout_constraintTop_toTopOf="@id/heartButton" />
+
+    <!-- End | Button on top of SeekBar -->
+
+    <!-- Start | SeekBar -->
+
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:progress="50"
+        android:progressDrawable="@drawable/seek_bar"
+        android:thumb="@drawable/seek_bar_thumb"
+        app:layout_constraintBottom_toTopOf="@id/navigationBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/time_textStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:alpha="0"
+        android:fontFamily="@font/productsans_light"
+        android:text="1:53"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@id/seekbar"
+        app:layout_constraintTop_toBottomOf="@id/seekbar" />
+
+    <TextView
+        android:id="@+id/time_textEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:alpha="0"
+        android:fontFamily="@font/productsans_light"
+        android:text="3:21"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintRight_toRightOf="@id/seekbar"
+        app:layout_constraintTop_toBottomOf="@id/seekbar" />
+
+    <!-- End | SeekBar -->
+
+    <!-- Start | Button on bottom of SeekBar -->
+
+    <ImageButton
+        android:id="@+id/buttonPlay"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="20dp"
+        android:alpha="1"
+        android:background="@drawable/ic_fluent_play_48_filled"
+        android:backgroundTint="@color/white"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/viewBackground"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewBackground" />
+
+
+    <ImageButton
+        android:id="@+id/buttonPrevious"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="35dp"
+        android:alpha="0"
+
+        android:background="@drawable/ic_fluent_previous_24_filled"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/buttonPlay"
+        app:layout_constraintEnd_toStartOf="@id/buttonPlay"
+        app:layout_constraintTop_toTopOf="@id/buttonPlay" />
+
+    <ImageButton
+        android:id="@+id/buttonNext"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="35dp"
+        android:alpha="0"
+        android:background="@drawable/ic_fluent_next_24_filled"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/buttonPlay"
+        app:layout_constraintStart_toEndOf="@id/buttonPlay"
+        app:layout_constraintTop_toTopOf="@id/buttonPlay" />
+
+    <ImageButton
+        android:id="@+id/repeatButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="35dp"
+        android:alpha="0"
+        android:background="@drawable/ic_fluent_arrow_repeat_all_24_regular"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/buttonPlay"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/buttonPlay" />
+
+    <ImageButton
+        android:id="@+id/shuffleButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="35dp"
+        android:alpha="0"
+        android:background="@drawable/ic_fluent_shuffle_24_regular"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/buttonPlay"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/buttonPlay" />
+
+    <!-- End | Button on bottom of SeekBar -->
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

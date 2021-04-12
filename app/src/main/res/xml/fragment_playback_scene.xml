@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start">
+       <KeyFrameSet>
+           <KeyPosition
+               motion:motionTarget="@+id/buttonPlay"
+               motion:framePosition="90"
+               motion:keyPositionType="deltaRelative"
+               motion:percentX="1"
+               motion:percentY="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/seekbar"
+               motion:framePosition="10"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/buttonNext"
+               motion:framePosition="90"
+               android:alpha="0" />
+           <KeyPosition
+               motion:motionTarget="@+id/buttonPrevious"
+               motion:framePosition="90"
+               motion:keyPositionType="deltaRelative"
+               motion:percentX="1.0"
+               motion:percentY="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/buttonPrevious"
+               motion:framePosition="90"
+               android:alpha="0" />
+           <KeyPosition
+               motion:motionTarget="@+id/buttonNext"
+               motion:framePosition="90"
+               motion:keyPositionType="deltaRelative"
+               motion:percentX="1"
+               motion:percentY="0" />
+           <KeyPosition
+               motion:motionTarget="@+id/repeatButton"
+               motion:framePosition="90"
+               motion:keyPositionType="deltaRelative"
+               motion:percentX="1"
+               motion:percentY="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/repeatButton"
+               motion:framePosition="90"
+               android:alpha="0" />
+           <KeyPosition
+               motion:motionTarget="@+id/shuffleButton"
+               motion:framePosition="90"
+               motion:keyPositionType="deltaRelative"
+               motion:percentX="1"
+               motion:percentY="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/shuffleButton"
+               motion:framePosition="90"
+               android:alpha="0" />
+           <KeyPosition
+               motion:motionTarget="@+id/nameSong"
+               motion:framePosition="50"
+               motion:keyPositionType="deltaRelative"
+               motion:percentX="1"
+               motion:percentY="0" />
+           <KeyPosition
+               motion:motionTarget="@+id/nameSinger"
+               motion:framePosition="50"
+               motion:keyPositionType="deltaRelative"
+               motion:percentX="1"
+               motion:percentY="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/nameSong"
+               motion:framePosition="5"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/nameSinger"
+               motion:framePosition="5"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/nameSong"
+               motion:framePosition="85"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/nameSinger"
+               motion:framePosition="85"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/buttonPlay"
+               motion:framePosition="5"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/buttonPlay"
+               motion:framePosition="90"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/seekbar"
+               motion:framePosition="75"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/time_textStart"
+               motion:framePosition="75"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/time_textEnd"
+               motion:framePosition="75"
+               android:alpha="0" />
+           <KeyPosition
+               motion:motionTarget="@+id/heartButton"
+               motion:framePosition="50"
+               motion:keyPositionType="deltaRelative"
+               motion:percentX="1"
+               motion:percentY="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/heartButton"
+               motion:framePosition="5"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/heartButton"
+               motion:framePosition="90"
+               android:alpha="0" />
+           <KeyPosition
+               motion:motionTarget="@+id/addPlaylistButton"
+               motion:framePosition="50"
+               motion:keyPositionType="deltaRelative"
+               motion:percentX="1"
+               motion:percentY="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/addPlaylistButton"
+               motion:framePosition="90"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/menuButton"
+               motion:framePosition="90"
+               android:alpha="0" />
+           <KeyPosition
+               motion:motionTarget="@+id/menuButton"
+               motion:framePosition="50"
+               motion:keyPositionType="deltaRelative"
+               motion:percentX="1"
+               motion:percentY="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/viewBackground"
+               motion:framePosition="10"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/viewFull"
+               motion:framePosition="20"
+               android:alpha="1" />
+       </KeyFrameSet>
+        <OnClick motion:targetId="@id/clickableView" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start"></ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/viewFull"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:alpha="1"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/viewBackground"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            motion:layout_constraintBottom_toTopOf="@id/navigationBar"
+            android:alpha="1"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/clickableView"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            motion:layout_constraintBottom_toTopOf="@id/navigationBar"
+            android:alpha="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="invisible" />
+        <Constraint
+            android:id="@+id/navigationBar"
+            android:elevation="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:alpha="1"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/minimizeButton"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            motion:layout_constraintBottom_toBottomOf="@id/nameSource"
+            android:alpha="1"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginStart="35dp"
+            motion:layout_constraintTop_toTopOf="@id/textSource"
+            android:visibility="visible" />
+        <Constraint
+            android:id="@+id/textSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="1"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="48dp" />
+        <Constraint
+            android:id="@+id/nameSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/textSource"
+            android:alpha="1"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toRightOf="parent" />
+        <Constraint
+            android:id="@+id/buttonPlay"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:alpha="1"
+            motion:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="100dp"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/navigationBar" />
+        <Constraint
+            android:id="@+id/buttonPrevious"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            motion:layout_constraintBottom_toBottomOf="@id/buttonPlay"
+            android:alpha="1"
+            motion:layout_constraintTop_toTopOf="@id/buttonPlay"
+            motion:layout_constraintRight_toLeftOf="@id/buttonPlay"
+            android:layout_marginEnd="35dp" />
+        <Constraint
+            android:id="@+id/buttonNext"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            motion:layout_constraintBottom_toBottomOf="@id/buttonPlay"
+            android:alpha="1"
+            motion:layout_constraintTop_toTopOf="@id/buttonPlay"
+            motion:layout_constraintLeft_toRightOf="@id/buttonPlay"
+            android:layout_marginStart="35dp" />
+        <Constraint
+            android:id="@+id/repeatButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            motion:layout_constraintBottom_toBottomOf="@id/buttonPlay"
+            android:alpha="1"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/buttonPlay"
+            android:layout_marginEnd="35dp" />
+        <Constraint
+            android:id="@+id/shuffleButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            motion:layout_constraintBottom_toBottomOf="@id/buttonPlay"
+            android:alpha="1"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/buttonPlay"
+            android:layout_marginStart="35dp" />
+        <Constraint
+            android:id="@+id/seekbar"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="@id/buttonPlay"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="50dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp" />
+        <Constraint
+            android:id="@+id/time_textStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/seekbar"
+            android:alpha="1"
+            motion:layout_constraintLeft_toLeftOf="@id/seekbar"
+            android:layout_marginTop="5dp" />
+        <Constraint
+            android:id="@+id/time_textEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/seekbar"
+            android:alpha="1"
+            motion:layout_constraintRight_toRightOf="@id/seekbar"
+            android:layout_marginTop="5dp" />
+        <Constraint
+            android:id="@+id/heartButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            motion:layout_constraintBottom_toTopOf="@id/seekbar"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginBottom="50dp" />
+        <Constraint
+            android:id="@+id/addPlaylistButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            motion:layout_constraintBottom_toBottomOf="@id/heartButton"
+            android:alpha="1"
+            motion:layout_constraintRight_toLeftOf="@id/heartButton"
+            motion:layout_constraintTop_toTopOf="@id/heartButton"
+            android:layout_marginRight="90dp" />
+        <Constraint
+            android:id="@+id/menuButton"
+            motion:layout_constraintLeft_toRightOf="@id/heartButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            motion:layout_constraintBottom_toBottomOf="@id/heartButton"
+            android:alpha="1"
+            motion:layout_constraintTop_toTopOf="@id/heartButton"
+            android:layout_marginLeft="90dp" />
+        <Constraint
+            android:id="@+id/nameSinger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/heartButton"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"></Constraint>
+        <Constraint
+            android:id="@+id/nameSong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/nameSinger"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"></Constraint>
+        <Constraint
+            android:id="@+id/imageSong"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="50dp"
+            motion:layout_constraintBottom_toTopOf="@id/nameSong"
+            motion:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/viewPagerPlayback"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="visible" />
+    </ConstraintSet>
+    <Transition
+        motion:constraintSetStart="@+id/end"
+        motion:constraintSetEnd="@+id/start" >
+        <OnClick motion:targetId="@+id/minimizeButton" />
+        <KeyFrameSet >
+            <KeyAttribute></KeyAttribute>
+        </KeyFrameSet>
+    </Transition>
+</MotionScene>
