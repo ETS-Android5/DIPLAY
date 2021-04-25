@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,20 +80,20 @@ public class LoginLoginFragment extends Fragment {
 
     public void login(){
         DataService dataService = APIService.getService();
-        Call<String> callback =dataService.handlerLogin(input_email.getText().toString(), input_password.getText().toString(), "login");
-        callback.enqueue(new Callback<String>() {
+        Call<User> callback = dataService.handlerLogin(input_email.getText().toString(), input_password.getText().toString(), "login");
+        callback.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String result = response.body();
-                if (result.equals("SUCCESS")){
+            public void onResponse(Call<User> call, Response<User> response) {
+                User result = response.body();
+                if (result.getResult()){
                     Toast.makeText(getContext(), "Login success!", Toast.LENGTH_SHORT).show();
-
 
                     SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("Auth", 0); // 0 - for private mode
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putBoolean("isLogin", true);
-                    editor.putString("email_user", input_email.getText().toString());
-                    editor.putString("password_user", input_password.getText().toString());
+                    editor.putString("name_user", result.getNameUser());
+                    editor.putString("email_user", result.getEmailUser());
+                    editor.putString("password_user", result.getPasswordUser());
                     editor.commit();
 
                     Intent intent = new Intent(getContext(), MainActivity.class);
@@ -104,7 +105,7 @@ public class LoginLoginFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(getContext(), "Throwable"+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });

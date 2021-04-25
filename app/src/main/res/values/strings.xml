@@ -195,4 +195,6 @@
     <string name="ABOUT_APP">ABOUT APP</string>
     <string name="LOGOUT">LOGOUT</string>
 
+    <string name="Choose_language">Choose language:</string>
+
 </resources>

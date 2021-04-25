@@ -23,4 +23,5 @@
     <string name="EDIT_PROFILE">РЕДАКТИРОВАТЬ ПРОФИЛЬ</string>
     <string name="ABOUT_APP">"О ПРИЛОЖЕНИИ "</string>
     <string name="LOGOUT">"ВЫЙТИ  "</string>
+    <string name="Choose_language">Выберите язык:</string>
 </resources>

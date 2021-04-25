@@ -32,6 +32,7 @@ import java.util.Locale;
 
 import app.dinhcuong.diplay.Activity.LoginActivity;
 import app.dinhcuong.diplay.Activity.MainActivity;
+import app.dinhcuong.diplay.Activity.SplashActivity;
 import app.dinhcuong.diplay.R;
 import butterknife.BindView;
 import eightbitlab.com.blurview.BlurView;
@@ -43,7 +44,7 @@ import jp.wasabeef.picasso.transformations.BlurTransformation;
 public class SettingFragment extends Fragment {
 
     View view;
-    TextView  button, button_about_app, button_language, button_logout;
+    TextView  button, text_name_user, text_email_user, button_about_app, button_language, button_logout;
     Dialog dialog;
 
     @Override
@@ -54,9 +55,25 @@ public class SettingFragment extends Fragment {
         //loadLocale(getActivity());
         view = inflater.inflate(R.layout.fragment_main_setting, container, false);
 
-        button_about_app = view.findViewById(R.id.button_about_app);
-        button_language = view.findViewById(R.id.button_language);
-        button_logout = view.findViewById(R.id.button_log_out);
+        mapping();
+
+        init();
+
+
+
+        return view;
+    }
+
+    private void init() {
+
+
+        SharedPreferences pref = getActivity().getSharedPreferences("Auth", getActivity().MODE_PRIVATE);
+        String name_user_SP = pref.getString("name_user","USER");
+        String email_user_SP = pref.getString("email_user", "mail@diplay.com");
+
+        text_name_user.setText(name_user_SP);
+        text_email_user.setText(email_user_SP);
+
 
         dialog = new Dialog(getContext());
         button_about_app.setOnClickListener(new View.OnClickListener() {
@@ -84,8 +101,14 @@ public class SettingFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
 
-        return view;
+    private void mapping() {
+        button_about_app = view.findViewById(R.id.button_about_app);
+        button_language = view.findViewById(R.id.button_language);
+        button_logout = view.findViewById(R.id.button_log_out);
+        text_name_user = view.findViewById(R.id.name_user);
+        text_email_user = view.findViewById(R.id.email_user);
     }
 
     private void openDialogLanguage() {
@@ -95,7 +118,7 @@ public class SettingFragment extends Fragment {
                 "Русский"
         };
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
-        mBuilder.setTitle("Choose Language:");
+        mBuilder.setTitle(R.string.Choose_language);
         mBuilder.setSingleChoiceItems(listLanguage, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

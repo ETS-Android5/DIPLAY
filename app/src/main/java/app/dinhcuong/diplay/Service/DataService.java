@@ -46,5 +46,9 @@ public interface DataService {
 
     @FormUrlEncoded
     @POST("handler_login.php")
-    Call<String> handlerLogin(@Field("email_user") String email_user, @Field("password_user") String password_user, @Field("action") String action);
+    Call<User> handlerLogin(@Field("email_user") String email_user, @Field("password_user") String password_user, @Field("action") String action);
+
+    @FormUrlEncoded
+    @POST("handler_register.php")
+    Call<String> handlerRegister(@Field("name_user") String name_user, @Field("email_user") String email_user, @Field("password_user") String password_user);
 }

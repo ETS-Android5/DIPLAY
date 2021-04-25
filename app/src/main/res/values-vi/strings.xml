@@ -24,4 +24,5 @@
     <string name="LANGUAGE">"NGÔN NGỮ "</string>
     <string name="ABOUT_APP">GIỚI THIỆU ỨNG DỤNG</string>
     <string name="LOGOUT">"ĐĂNG XUẤT  "</string>
+    <string name="Choose_language">Chọn ngôn ngữ:</string>
 </resources>
