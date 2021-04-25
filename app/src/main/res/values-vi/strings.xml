@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Diplay</string>
+    <string name="good_morning">Chào buổi sáng</string>
+    <string name="good_afternoon">Chào buổi chiều</string>
+    <string name="good_evening">Chào buổi tối</string>
+    <string name="good_night">Chúc ngủ ngon</string>
+    <string name="got_it">Đã hiểu</string>
+    <string name="PLAYLISTS">DANH SÁCH PHÁT</string>
+    <string name="ALBUMS">BỘ SƯU TẬP</string>
+    <string name="ARTISTS">CA SĨ</string>
+    <string name="STORAGE">LƯU TRỮ</string>
+    <string name="Home">Trang chủ</string>
+    <string name="Search">Tìm kiếm</string>
+    <string name="Library">Thư viện</string>
+    <string name="Setting">Cài đặt</string>
+    <string name="CREATE_PLAYLIST">TẠO DANH SÁCH PHÁT</string>
+    <string name="Liked_Song">"Bài hát đã thích "</string>
+    <string name="text_search">"Tìm kiếm tiêu đề, album, bài hát, thể loại hoặc danh sách phát "</string>
+    <string name="PLAY_NOW">PHÁT NGAY</string>
+    <string name="Local_music">Nhạc cục bộ</string>
+    <string name="Songs_from_internal_storage">Bài hát từ bộ nhớ trong</string>
+    <string name="EDIT_PROFILE">"CHỈNH SỬA HỒ SƠ "</string>
+    <string name="LANGUAGE">"NGÔN NGỮ "</string>
+    <string name="ABOUT_APP">GIỚI THIỆU ỨNG DỤNG</string>
+    <string name="LOGOUT">"ĐĂNG XUẤT  "</string>
+</resources>

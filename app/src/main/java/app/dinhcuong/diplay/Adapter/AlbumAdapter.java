@@ -29,7 +29,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_home_album, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_home_rounded_square, parent, false);
 
         return new ViewHolder(view);
     }
@@ -53,9 +53,9 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder> 
         TextView likesAlbum;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageAlbum = itemView.findViewById(R.id.image_album);
-            nameAlbum = itemView.findViewById(R.id.name_album);
-            likesAlbum = itemView.findViewById(R.id.likes_album);
+            imageAlbum = itemView.findViewById(R.id.image_item);
+            nameAlbum = itemView.findViewById(R.id.name_item);
+            likesAlbum = itemView.findViewById(R.id.likes_item);
 
         }
     }

@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import app.dinhcuong.diplay.Fragment.Fragment_Home;
 import app.dinhcuong.diplay.Fragment.Fragment_Library;
 import app.dinhcuong.diplay.Fragment.Fragment_Search;
-import app.dinhcuong.diplay.ViewFullPlaylistFragment;
+import app.dinhcuong.diplay.Fragment.SettingFragment;
 
 public class MainViewPagerAdapter extends FragmentStatePagerAdapter{
 
@@ -24,6 +24,8 @@ public class MainViewPagerAdapter extends FragmentStatePagerAdapter{
                 return new Fragment_Search();
             case 2:
                 return new Fragment_Library();
+            case 3:
+                return new SettingFragment();
             default:
                 return new Fragment_Home();
         }

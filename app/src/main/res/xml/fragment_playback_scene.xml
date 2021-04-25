@@ -321,7 +321,8 @@
             android:layout_marginBottom="50dp"
             android:layout_marginTop="5dp"
             android:layout_marginStart="35dp"
-            android:layout_marginEnd="35dp"></Constraint>
+            android:layout_marginEnd="35dp"
+            motion:maxWidth="350dp"></Constraint>
         <Constraint
             android:id="@+id/nameSong"
             android:layout_width="wrap_content"
@@ -330,21 +331,30 @@
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintBottom_toTopOf="@id/nameSinger"
             android:layout_marginStart="35dp"
-            android:layout_marginEnd="35dp"></Constraint>
+            android:layout_marginEnd="35dp"
+            motion:maxWidth="350dp"></Constraint>
         <Constraint
             android:id="@+id/imageSong"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
             motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="50dp"
-            motion:layout_constraintBottom_toTopOf="@id/nameSong"
-            motion:layout_constraintEnd_toEndOf="parent" />
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/animation_image_song"
+            motion:layout_constraintBottom_toBottomOf="@id/animation_image_song" />
         <Constraint
-            android:id="@+id/viewPagerPlayback"
+            android:id="@+id/fragment_playback_screen_song_list"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="match_parent"
             motion:layout_constraintBottom_toBottomOf="parent"
             android:visibility="visible" />
+        <Constraint
+            android:id="@+id/animation_image_song"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            motion:layout_constraintBottom_toTopOf="@id/nameSong"
+            android:visibility="visible"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintLeft_toLeftOf="parent" />
     </ConstraintSet>
     <Transition
         motion:constraintSetStart="@+id/end"

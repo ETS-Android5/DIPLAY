@@ -8,6 +8,7 @@ import app.dinhcuong.diplay.Model.Mood;
 import app.dinhcuong.diplay.Model.Playlist;
 import app.dinhcuong.diplay.Model.Slider;
 import app.dinhcuong.diplay.Model.Song;
+import app.dinhcuong.diplay.Model.User;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -42,4 +43,8 @@ public interface DataService {
     @FormUrlEncoded
     @POST("handler_song_likes.php")
     Call<String> handlerLikeForSong(@Field("id_song") String id_song, @Field("number_of_like") String number_of_like, @Field("action") String action);
+
+    @FormUrlEncoded
+    @POST("handler_login.php")
+    Call<String> handlerLogin(@Field("email_user") String email_user, @Field("password_user") String password_user, @Field("action") String action);
 }

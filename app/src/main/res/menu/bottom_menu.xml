@@ -7,16 +7,22 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/ic_fluent_home_24_filled"
-        android:title="Home"
+        android:title="@string/Home"
         app:cnb_iconColor="@color/bottom_menu_home"/>
     <item
         android:id="@+id/search"
         android:icon="@drawable/ic_fluent_search_24_filled"
-        android:title="Search"
+        android:title="@string/Search"
         app:cnb_iconColor="@color/bottom_menu_search"/>
 
     <item
         android:id="@+id/library"
+        android:icon="@drawable/ic_fluent_library_24_filled"
+        android:title="@string/Library"
+        app:cnb_iconColor="@color/bottom_menu_like"/>
+
+    <item
+        android:id="@+id/test"
         android:icon="@drawable/ic_fluent_library_24_filled"
         android:title="Library"
         app:cnb_iconColor="@color/bottom_menu_like"/>

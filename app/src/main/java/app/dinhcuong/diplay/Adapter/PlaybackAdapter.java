@@ -1,13 +1,18 @@
 package app.dinhcuong.diplay.Adapter;
 
 import android.content.Context;
+import android.media.MediaMetadataRetriever;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -28,7 +33,7 @@ public class PlaybackAdapter extends RecyclerView.Adapter<PlaybackAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_playback_playlist_song, parent, false);
+        View view = inflater.inflate(R.layout.item_playback_bottom_screen_circle_left, parent, false);
 
         return new ViewHolder(view);
     }
@@ -36,9 +41,36 @@ public class PlaybackAdapter extends RecyclerView.Adapter<PlaybackAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Song song = songArrayList.get(position);
-        holder.name_song.setText(song.getNameSong());
-        holder.name_singer.setText(song.getNameSinger());
+        holder.index_song.setText(position + 1 + "");
 
+            if (song.getLinkSong() != null){
+                holder.name_song.setText(song.getNameSong());
+                holder.name_singer.setText(song.getNameSinger());
+                Picasso.get().load(song.getImageSong()).into(holder.image_song);
+            } else {
+                byte[] image = getAlbumArt(song.getPath());
+                if (image != null) {
+                    Glide.with(context).asBitmap()
+                            .load(image)
+                            .into(holder.image_song);
+                } else {
+                    Glide.with(context)
+                            .load(R.drawable.homnaytoibuon)
+                            .into(holder.image_song);
+                }
+                holder.name_song.setText(song.getTitle());
+                holder.name_singer.setText(song.getArtist());
+            }
+
+
+
+    }
+    public byte[] getAlbumArt (String uri){
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        retriever.setDataSource(uri);
+        byte[] art = retriever.getEmbeddedPicture();
+        retriever.release();
+        return art;
     }
 
     @Override
@@ -47,12 +79,14 @@ public class PlaybackAdapter extends RecyclerView.Adapter<PlaybackAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name_song, name_singer;
+        TextView name_song, name_singer, index_song;
+        ImageView image_song;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name_singer = itemView.findViewById(R.id.name_singer);
             name_song = itemView.findViewById(R.id.name_song);
-
+            index_song = itemView.findViewById(R.id.index_song);
+            image_song = itemView.findViewById(R.id.image_song);
         }
     }
 }

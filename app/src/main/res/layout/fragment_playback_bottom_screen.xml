@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    app:layoutDescription="@xml/fragment_playback_screen_song_list_scene">
+
+    <View
+        android:id="@+id/viewScreenSongListBackground"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/playback_screen_song_list_background_rounded"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_playback_song_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="@id/viewScreenSongListBackground"/>
+
+
+    <ImageButton
+        android:id="@+id/button_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/ic_fluent_caret_up_20_filled"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/viewScreenSongListBackground"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewScreenSongListBackground" />
+
+    <ImageButton
+        android:id="@+id/icon_next_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/ic_nextup_music"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/button_up"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_up" />
+
+    <TextView
+        android:id="@+id/name_song_next_song"
+        android:layout_width="wrap_content"
+        android:maxWidth="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/productsans_black"
+        android:text="Hom Nay Toi Buon"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="@id/button_up"
+        app:layout_constraintLeft_toRightOf="@id/icon_next_up"
+        app:layout_constraintTop_toTopOf="@id/button_up" />
+
+    <ImageButton
+        android:id="@+id/icon_dot"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@drawable/ic_fluent_circle_small_20_regular"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/button_up"
+        app:layout_constraintLeft_toRightOf="@id/name_song_next_song"
+        app:layout_constraintRight_toLeftOf="@id/name_singer_next_song"
+        app:layout_constraintTop_toTopOf="@id/button_up" />
+
+
+    <TextView
+        android:id="@+id/name_singer_next_song"
+        android:layout_width="wrap_content"
+        android:maxWidth="100dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/productsans_light"
+        android:text="Phung Khanh Linh"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="@id/button_up"
+        app:layout_constraintLeft_toRightOf="@id/icon_dot"
+        app:layout_constraintTop_toTopOf="@id/button_up" />
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/fragment_playback_screen"
-        class="app.dinhcuong.diplay.PlaybackFragment"
+        class="app.dinhcuong.diplay.Fragment.PlaybackFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

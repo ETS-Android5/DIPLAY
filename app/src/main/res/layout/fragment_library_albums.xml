@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_login"
+    android:theme="@style/Theme.DIPLAY">
+
+    <TextView
+        android:id="@+id/button_create_playlist"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="CREATE PLAYLIST"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:fontFamily="@font/productsans_medium"
+        android:textColor="@color/white"
+        android:background="@drawable/button_blue_rounded"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_liked_songs"
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toBottomOf="@id/button_create_playlist">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_image_item"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:cardCornerRadius="6dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/playlists"/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/text_name_playlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/card_image_item"
+            app:layout_constraintLeft_toRightOf="@id/card_image_item"
+            app:layout_constraintBottom_toBottomOf="@id/card_image_item"
+            app:layout_constraintVertical_bias="0.3"
+            android:text="Liked Songs"
+            android:textSize="18sp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/productsans_bold"
+            android:textColor="@color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_name_playlist"
+            app:layout_constraintLeft_toLeftOf="@id/text_name_playlist"
+            android:text="100 songs"
+            android:textSize="12sp"
+            android:fontFamily="@font/productsans_light"
+            android:textColor="@color/white"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        app:layout_constraintTop_toBottomOf="@id/item_liked_songs"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_library_playlists"
+            android:paddingTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

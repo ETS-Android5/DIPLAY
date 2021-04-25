@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/Theme.DIPLAY"
+    android:background="@drawable/background_library"
+    android:layout_marginBottom="100dp">
+    <View
+        android:id="@+id/viewBackgroundDeep"
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:layout_marginBottom="35dp"
+        android:alpha="0.2"
+        android:background="@drawable/ic_wave_2"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="60dp"
+            android:paddingBottom="100dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
+
+                <TextView
+                    android:id="@+id/text_getting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Good evening"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/productsans_black"
+                    android:textSize="@dimen/text_size_xxx_large"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageButton
+                    android:id="@+id/settingButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_fluent_settings_28_regular"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/text_getting"
+                    app:layout_constraintBottom_toBottomOf="@id/text_getting"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <fragment
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:name="app.dinhcuong.diplay.Fragment.HomeSliderFragment"
+                android:id="@+id/fragment_home_slider"/>
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="app.dinhcuong.diplay.Fragment.HomeMoodsFragment"
+                android:id="@+id/fragment_home_moods"/>
+
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="app.dinhcuong.diplay.Fragment.HomeAlbumsFragment"
+                android:id="@+id/fragment_home_albums"/>
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="app.dinhcuong.diplay.Fragment.HomePlaylistsFragment"
+                android:id="@+id/fragment_home_playlists"/>
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="app.dinhcuong.diplay.Fragment.HomeSongFavoriteFragment"
+                android:id="@+id/fragment_home_song_favorite"/>
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="app.dinhcuong.diplay.Fragment.HomeGenresFragment"
+                android:id="@+id/fragment_home_genres"/>
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

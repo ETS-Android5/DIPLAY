@@ -29,7 +29,9 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_home_mood, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_home_rounded_rectangle, parent, false);
+
+
 
         return new ViewHolder(view);
     }
@@ -51,8 +53,8 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.ViewHolder> {
         TextView nameMood;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageMood = itemView.findViewById(R.id.image_mood);
-            nameMood = itemView.findViewById(R.id.name_mood);
+            imageMood = itemView.findViewById(R.id.image_item);
+            nameMood = itemView.findViewById(R.id.name_item);
 
         }
     }

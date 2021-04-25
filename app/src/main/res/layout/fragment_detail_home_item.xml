@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.DIPLAY"
+    android:background="#1E1E1E"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.DetailHomePlaylistItemFragment"
+    android:id="@+id/coordinator_layout_playlist">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/appbar_layout">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:expandedTitleGravity="start|bottom"
+            app:expandedTitleMarginBottom="10dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:id="@+id/collapsing_toolbar_layout_playlist">
+
+            <ImageView
+                android:id="@+id/image_playlist_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/playlists"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_toolbar_playlist" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                android:id="@+id/toolbar_playlist"
+                android:elevation="6dp"
+                app:navigationIcon="?attr/homeAsUpIndicator">
+            </androidx.appcompat.widget.Toolbar>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="30dp"
+                app:cardCornerRadius="7dp"
+                android:layout_gravity="center">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/playlists"
+                    android:id="@+id/image_playlist"/>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/text_name_playlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="70s Year of Student"
+                android:visibility="invisible"
+                android:layout_gravity="center|bottom"
+                android:fontFamily="@font/productsans_bold"
+                android:textColor="@color/white"
+                android:layout_marginBottom="100dp"/>
+            <TextView
+                android:id="@+id/text_name_singer"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="FOLLOW"
+                android:gravity="center"
+                android:layout_gravity="center|bottom"
+                android:fontFamily="@font/productsans_light"
+                android:background="@drawable/button_white_30"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_marginBottom="90dp"/>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/playlist_floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        app:layout_anchor="@id/appbar_layout"
+        app:layout_anchorGravity="bottom|right"
+        android:backgroundTint="@color/white"
+        android:layout_marginRight="20dp"
+        app:elevation="6dp"
+        android:text="Play Now"
+        android:fontFamily="@font/productsans_bold"
+        app:borderWidth="0dp"
+        app:icon="@drawable/ic_fluent_play_circle_16_filled"/>
+
+
+    <androidx.core.widget.NestedScrollView
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/layout_background_playlist">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_playlist"
+            android:paddingTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

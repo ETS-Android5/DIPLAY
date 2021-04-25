@@ -1,9 +1,6 @@
 package app.dinhcuong.diplay.Adapter;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.Serializable;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
-import app.dinhcuong.diplay.Activity.MainActivity;
 import app.dinhcuong.diplay.Model.Song;
-import app.dinhcuong.diplay.PlaybackFragment;
-import app.dinhcuong.diplay.PlaybackSongListFragment;
 import app.dinhcuong.diplay.R;
-import app.dinhcuong.diplay.ViewFullPlaylistFragment;
 
 import static android.app.PendingIntent.getActivity;
 
@@ -41,7 +35,7 @@ public class ListSongsAdapter extends RecyclerView.Adapter<ListSongsAdapter.View
     private ISendDataListener iSendDataListener;
     public interface ISendDataListener {
         //Function send data to playbackFragment
-        void sendDataForPlayback(Song songArrayListSend);
+        void sendDataForPlayback(Song songArrayListSend,boolean MODE_OFFLINE, String name_playlist, String source);
     }
 
 
@@ -49,7 +43,7 @@ public class ListSongsAdapter extends RecyclerView.Adapter<ListSongsAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_playlist_song, parent,false);
+        View view = inflater.inflate(R.layout.item_song_cirlce_left, parent,false);
         return new ViewHolder(view);
     }
 
@@ -59,6 +53,7 @@ public class ListSongsAdapter extends RecyclerView.Adapter<ListSongsAdapter.View
         holder.name_song.setText(song.getNameSong());
         holder.name_singer.setText(song.getNameSinger());
         holder.index_song.setText(position + 1 + "");
+        Picasso.get().load(song.getImageSong()).into(holder.image_song);
     }
 
     @Override
@@ -94,7 +89,7 @@ public class ListSongsAdapter extends RecyclerView.Adapter<ListSongsAdapter.View
                     //Declare Interface
                     iSendDataListener = (ISendDataListener) activity;
                     //Use Interface to send data to MainActivity
-                    iSendDataListener.sendDataForPlayback(songArrayList.get(getAdapterPosition()));
+                    iSendDataListener.sendDataForPlayback(songArrayList.get(getAdapterPosition()), false, "", "PLAYLISTS");
 
                     //activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_test, playbackFragment).addToBackStack(null).commit();
                 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Diplay</string>
+    <string name="Setting">Параметр</string>
+    <string name="Library">Библиотека</string>
+    <string name="Search">"Поиск "</string>
+    <string name="Home">Гравный</string>
+    <string name="PLAYLISTS">"ПЛЕЙЛИСТЫ "</string>
+    <string name="ALBUMS">"АЛЬБОМЫ "</string>
+    <string name="ARTISTS">ПЕВЦЫ</string>
+    <string name="STORAGE">"ХРАНЕНИЯ "</string>
+    <string name="good_morning">Доброе Утро</string>
+    <string name="good_afternoon">"Добрый День "</string>
+    <string name="good_evening">"Добрый Вечер  "</string>
+    <string name="good_night">"Спокойной Ночи "</string>
+    <string name="CREATE_PLAYLIST">"СОЗДАТЬ ПЛЕЙЛИСТ "</string>
+    <string name="Liked_Song">"Понравившаяся песня "</string>
+    <string name="text_search">"Поиск по названию, альбому, песне, жанру или плейлисту "</string>
+    <string name="PLAY_NOW">ИГРАТЬ СЕЙЧАС</string>
+    <string name="Local_music">Местная музыка</string>
+    <string name="Songs_from_internal_storage">"Песни из внутренней памяти "</string>
+    <string name="LANGUAGE">ЯЗЫК</string>
+    <string name="EDIT_PROFILE">РЕДАКТИРОВАТЬ ПРОФИЛЬ</string>
+    <string name="ABOUT_APP">"О ПРИЛОЖЕНИИ "</string>
+    <string name="LOGOUT">"ВЫЙТИ  "</string>
+</resources>

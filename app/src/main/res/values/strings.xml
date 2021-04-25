@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">Diplay</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--Getting-->
+    <string name="good_morning">Good Morning</string>
+    <string name="good_afternoon">Good Afternoon</string>
+    <string name="good_evening">Good Evening</string>
+    <string name="good_night">Good Night</string>
+
+    <string name="Home">Home</string>
+    <string name="Search">Search</string>
+    <string name="Library">Library</string>
+
+    <string name="Setting">Setting</string>
 
     <!--OnBoarding Slides-->
     <string name="got_it">Got it</string>
@@ -161,5 +170,29 @@
     -->
     <string name="hello_world">Hello Square World!</string>
     <string name="todo">TODO</string>
+
+    <!-- Search -->
+    <string name="text_search">Search title, album, song, genre or playlist</string>
+    
+    <!-- Library -->
+    <string name="PLAYLISTS">PLAYLISTS</string>
+    <string name="ALBUMS">ALBUMS</string>
+    <string name="ARTISTS">ARTISTS</string>
+    <string name="STORAGE">STORAGE</string>
+
+    <!-- Library | Playlist -->
+    <string name="CREATE_PLAYLIST">CREATE PLAYLIST</string>
+    <string name="Liked_Song">Liked Song</string>
+
+    <!-- Library | Storage -->
+    <string name="PLAY_NOW">PLAY NOW</string>
+    <string name="Local_music">Local music</string>
+    <string name="Songs_from_internal_storage">Songs from internal storage</string>
+
+    <!-- Setting -->
+    <string name="EDIT_PROFILE">EDIT PROFILE</string>
+    <string name="LANGUAGE">LANGUAGE</string>
+    <string name="ABOUT_APP">ABOUT APP</string>
+    <string name="LOGOUT">LOGOUT</string>
 
 </resources>

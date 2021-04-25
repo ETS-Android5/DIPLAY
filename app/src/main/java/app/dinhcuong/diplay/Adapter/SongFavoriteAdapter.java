@@ -1,8 +1,6 @@
 package app.dinhcuong.diplay.Adapter;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +18,6 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import app.dinhcuong.diplay.Model.Song;
-import app.dinhcuong.diplay.PlaybackFragment;
 import app.dinhcuong.diplay.R;
 import app.dinhcuong.diplay.Service.APIService;
 import app.dinhcuong.diplay.Service.DataService;
@@ -32,6 +29,14 @@ public class SongFavoriteAdapter extends RecyclerView.Adapter<SongFavoriteAdapte
     Context context;
     ArrayList<Song> songFavoriteArrayList;
 
+    //Set Interface (Use send data from here to MainActivity -> to PlaybackFragment
+    private ISendDataListener iSendDataListener;
+    public interface ISendDataListener {
+        //Function send data to playbackFragment
+
+        void sendDataForPlayback(Song songArrayListSend, boolean MODE_OFFLINE, String name_playlist, String source);
+    }
+
     public SongFavoriteAdapter(Context context, ArrayList<Song> songFavoriteArrayList) {
         this.context = context;
         this.songFavoriteArrayList = songFavoriteArrayList;
@@ -40,7 +45,7 @@ public class SongFavoriteAdapter extends RecyclerView.Adapter<SongFavoriteAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_home_song_favorite, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_home_song_cirlce, parent, false);
 
         return new ViewHolder(view);
     }
@@ -102,6 +107,8 @@ public class SongFavoriteAdapter extends RecyclerView.Adapter<SongFavoriteAdapte
                 @Override
                 public void onClick(View v) {
                     AppCompatActivity activity = (AppCompatActivity) v.getContext();
+
+                    /*
                     PlaybackFragment playbackFragment = new PlaybackFragment();
 
                     Bundle bundle = new Bundle();
@@ -110,6 +117,13 @@ public class SongFavoriteAdapter extends RecyclerView.Adapter<SongFavoriteAdapte
 
 
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.bottomPlaybackFragment, playbackFragment).addToBackStack(null).commit();
+
+                     */
+
+                    //Declare Interface
+                    iSendDataListener = (ISendDataListener) activity;
+                    //Use Interface to send data to MainActivity
+                    iSendDataListener.sendDataForPlayback(songFavoriteArrayList.get(getAdapterPosition()), false, "HOT", "SONGS");
                 }
             });
 
