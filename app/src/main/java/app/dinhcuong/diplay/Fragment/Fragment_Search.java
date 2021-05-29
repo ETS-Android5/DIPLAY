@@ -115,7 +115,7 @@ public class Fragment_Search extends Fragment {
 
         resultSearch.setVisibility(View.VISIBLE);
         String text_content = getContext().getResources().getString(R.string.search_with);
-        resultSearch.setText(text_content + search_src_text.getText().toString());
+        resultSearch.setText(text_content + " \""+ search_src_text.getText().toString() + "\"");
 
         DataService dataService = APIService.getService();
 
