@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:text="Moods"
+            android:text="@string/Moods"
             android:textColor="@color/white"
             android:fontFamily="@font/productsans_bold"
             android:textSize="@dimen/text_size_x_large"/>

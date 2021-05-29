@@ -1,6 +1,9 @@
 package app.dinhcuong.diplay.Fragment;
 
 import android.animation.ObjectAnimator;
+import android.app.AlertDialog;
+import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioAttributes;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
@@ -13,19 +16,27 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import com.squareup.picasso.Picasso;
@@ -33,13 +44,21 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import app.dinhcuong.diplay.Adapter.LocalSongAdapter;
+import app.dinhcuong.diplay.Adapter.PlaylistAdapter;
+import app.dinhcuong.diplay.Adapter.PlaylistSelectAdapter;
 import app.dinhcuong.diplay.Model.Playlist;
 import app.dinhcuong.diplay.Model.Song;
 import app.dinhcuong.diplay.R;
+import app.dinhcuong.diplay.Service.APIService;
+import app.dinhcuong.diplay.Service.DataService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PlaybackFragment extends Fragment {
 
@@ -54,7 +73,7 @@ public class PlaybackFragment extends Fragment {
 
     SeekBar seekBar;
 
-    ImageButton buttonPlay, buttonNext, buttonPrevious, repeatButton, shuffleButton;
+    ImageButton buttonPlay, buttonNext, buttonPrevious, repeatButton, shuffleButton, heartButton, addPlaylistButton, menuButton;
 
     ViewPager viewPager;
 
@@ -115,9 +134,6 @@ public class PlaybackFragment extends Fragment {
                         break;
                     case R.id.library:
                         fragment = new Fragment_Library();
-                        break;
-                    case R.id.test:
-                        fragment = new SettingFragment();
                         break;
                 }
                 if (fragment != null){
@@ -366,6 +382,19 @@ public class PlaybackFragment extends Fragment {
     private void eventClick() {
 
         //Button
+        addPlaylistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialogAddPlaylist(songArrayList.get(position).getIdSong());
+            }
+        });
+
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialogLyricSong(songArrayList.get(position).getLyricSong());
+            }
+        });
 
         buttonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -453,6 +482,7 @@ public class PlaybackFragment extends Fragment {
                         Picasso.get().load(songArrayList.get(position).getImageSong()).into(image_song);
                         name_singer.setText(songArrayList.get(position).getNameSinger());
                         name_song.setText(songArrayList.get(position).getNameSong());
+                        setButtonLike(songArrayList.get(position),heartButton);
                         new PlaySong().execute(songArrayList.get(position).getLinkSong());
                         getNextSong();
 
@@ -509,6 +539,7 @@ public class PlaybackFragment extends Fragment {
                         Picasso.get().load(songArrayList.get(position).getImageSong()).into(image_song);
                         name_singer.setText(songArrayList.get(position).getNameSinger());
                         name_song.setText(songArrayList.get(position).getNameSong());
+                        setButtonLike(songArrayList.get(position),heartButton);
                         new PlaySong().execute(songArrayList.get(position).getLinkSong());
                         getNextSong();
 
@@ -548,10 +579,123 @@ public class PlaybackFragment extends Fragment {
                 mediaPlayer.seekTo(seekBar.getProgress());
             }
         });
+
+        heartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DataService dataService = APIService.getService();
+                SharedPreferences pref = getActivity().getSharedPreferences("Auth", getContext().MODE_PRIVATE);
+                String id_user_SP = pref.getString("id_user","0");
+
+                Call<String> callback = dataService.handlerLikeForSong(id_user_SP, songArrayList.get(position).getIdSong(), "0", "checkLiked");
+                callback.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        String result = response.body();
+                        if (result.equals("LIKED")){
+                            DataService dataService = APIService.getService();
+                            SharedPreferences pref = getActivity().getSharedPreferences("Auth", getActivity().MODE_PRIVATE);
+                            String id_user_SP = pref.getString("id_user","0");
+
+                            Call<String> callback = dataService.handlerLikeForSong(id_user_SP, songArrayList.get(position).getIdSong(), "1", "unlike");
+                            callback.enqueue(new Callback<String>() {
+                                @Override
+                                public void onResponse(Call<String> call, Response<String> response) {
+                                    String result = response.body();
+                                    if (result.equals("SUCCESS")){
+                                        heartButton.setBackgroundResource(R.drawable.ic_fluent_heart_24_regular);
+                                        Toast.makeText(getActivity(), "Disliked", Toast.LENGTH_SHORT).show();
+
+                                    } else  {
+                                        Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<String> call, Throwable t) {
+
+                                }
+                            });
+                        } else  {
+                            DataService dataService = APIService.getService();
+                            SharedPreferences pref = getActivity().getSharedPreferences("Auth", getActivity().MODE_PRIVATE);
+                            String id_user_SP = pref.getString("id_user","0");
+
+                            Call<String> callback = dataService.handlerLikeForSong(id_user_SP, songArrayList.get(position).getIdSong(), "1", "like");
+                            callback.enqueue(new Callback<String>() {
+                                @Override
+                                public void onResponse(Call<String> call, Response<String> response) {
+                                    String result = response.body();
+                                    if (result.equals("SUCCESS")){
+                                        heartButton.setBackgroundResource(R.drawable.ic_fluent_heart_24_filled);
+                                        Toast.makeText(getActivity(), "Liked", Toast.LENGTH_SHORT).show();
+
+                                    } else  {
+                                        Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<String> call, Throwable t) {
+
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                    }
+                });
+
+
+
+
+            }
+        });
     }
 
+    private void openDialogLyricSong(String lyricText) {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_lyric, null);
+
+        TextView button_hide = dialogView.findViewById(R.id.button_hide);
+        TextView lyric = dialogView.findViewById(R.id.lyric);
+        if (lyricText == null || lyricText.equals("")){
+            String no_data = getContext().getResources().getString(R.string.not_found_data);
+            lyric.setText(no_data);
+        } else {
+            lyric.setText(lyricText);
+        }
 
 
+
+
+
+
+
+
+        button_hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+
+        alertDialog.getWindow().setContentView(dialogView);
+        alertDialog.getWindow().setDimAmount(0.85f);
+        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE|WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+    }
 
 
     private void startAnimation(){
@@ -579,6 +723,9 @@ public class PlaybackFragment extends Fragment {
         buttonPrevious = view.findViewById(R.id.buttonPrevious);
         repeatButton = view.findViewById(R.id.repeatButton);
         shuffleButton = view.findViewById(R.id.shuffleButton);
+        heartButton = view.findViewById(R.id.heartButton);
+        addPlaylistButton = view.findViewById(R.id.addPlaylistButton);
+        menuButton = view.findViewById(R.id.menuButton);
 
         //TextView
         time_start = view.findViewById(R.id.time_textStart);
@@ -597,11 +744,38 @@ public class PlaybackFragment extends Fragment {
 
     }
 
+    private void setButtonLike(Song song, ImageButton heartButton) {
+
+        DataService dataService = APIService.getService();
+        SharedPreferences pref = getActivity().getSharedPreferences("Auth", getActivity().MODE_PRIVATE);
+        String id_user_SP = pref.getString("id_user","0");
+
+        Call<String> callback = dataService.handlerLikeForSong(id_user_SP, song.getIdSong(), "0", "checkLiked");
+        callback.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String result = response.body();
+                if (result.equals("LIKED")){
+                    heartButton.setBackgroundResource(R.drawable.ic_fluent_heart_24_filled);
+                } else  {
+                    heartButton.setBackgroundResource(R.drawable.ic_fluent_heart_24_regular);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+    }
+
     private void init(String name_playlist, String source) {
 
         removeFragment();
 
         if (THIS_MODE_OFFLINE){
+
+            resetHeartButton();
             //Play with offline
             if(songArrayList.size() > 0) {
 
@@ -610,8 +784,20 @@ public class PlaybackFragment extends Fragment {
                 }
 
                 startAnimation();
-                textSource.setText("PLAYING FROM " + source);
-                nameSource.setText(name_playlist);
+                String text_playing_from = getContext().getResources().getString(R.string.PLAYING_FROM);
+                String text_playing = getContext().getResources().getString(R.string.PLAYING);
+                String text_a_single_song = getContext().getResources().getString(R.string.A_SINGLE_SONG);
+                if(source.equals("")){
+                    textSource.setText(text_playing);
+                } else {
+                    textSource.setText(text_playing_from + source);
+                }
+                if(name_playlist.equals("")){
+                    nameSource.setText(text_a_single_song);
+                } else {
+                    nameSource.setText(name_playlist);
+                }
+
                 name_singer.setText(songArrayList.get(0).getArtist());
                 name_song.setText(songArrayList.get(0).getTitle());
 
@@ -675,16 +861,32 @@ public class PlaybackFragment extends Fragment {
                  */
                 }
                 startAnimation();
-                textSource.setText("PLAYING FROM " + source);
-                nameSource.setText(name_playlist);
+                String text_playing_from = getContext().getResources().getString(R.string.PLAYING_FROM);
+                String text_playing = getContext().getResources().getString(R.string.PLAYING);
+                String text_a_single_song = getContext().getResources().getString(R.string.A_SINGLE_SONG);
+                if(source.equals("")){
+                    textSource.setText(text_playing);
+                } else {
+                    textSource.setText(text_playing_from + source);
+                }
+                if(name_playlist.equals("")){
+                    nameSource.setText(text_a_single_song);
+                } else {
+                    nameSource.setText(name_playlist);
+                }
                 Picasso.get().load(songArrayList.get(0).getImageSong()).into(image_song);
                 name_singer.setText(songArrayList.get(0).getNameSinger());
                 name_song.setText(songArrayList.get(0).getNameSong());
+                setButtonLike(songArrayList.get(0),heartButton);
                 new PlaySong().execute(songArrayList.get(0).getLinkSong());
 
 
             }
         }
+
+    }
+
+    public void HideButtonTopOfSeekBar(){
 
     }
 
@@ -1021,5 +1223,61 @@ public class PlaybackFragment extends Fragment {
         if (playbackBottomScreenFragment != null) {
             playbackBottomScreenFragment.updateNextSong(currentPosition);
         }
+    }
+
+    public void resetHeartButton(){
+        heartButton.setBackgroundResource(R.drawable.ic_fluent_heart_24_regular);
+    }
+
+    private void openDialogAddPlaylist(String id_song) {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_select_playlist, null);
+
+        TextView button_cancel = dialogView.findViewById(R.id.button_cancel);
+        LottieAnimationView lottieAnimationView = dialogView.findViewById(R.id.animation_loading);
+        RecyclerView recyclerViewCreated = dialogView.findViewById(R.id.recycler_view_select_playlists_created);
+
+
+        DataService dataService = APIService.getService();
+
+        SharedPreferences pref = getActivity().getSharedPreferences("Auth", getActivity().MODE_PRIVATE);
+        String id_user_SP = pref.getString("id_user","0");
+
+        Call<List<Playlist>> callback = dataService.getDataLibraryPlaylist(id_user_SP, "created");
+        callback.enqueue(new Callback<List<Playlist>>() {
+            @Override
+            public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
+                ArrayList<Playlist> playlistArrayList = (ArrayList<Playlist>) response.body();
+                PlaylistSelectAdapter playlistAdapterCreated = new PlaylistSelectAdapter(getActivity(), playlistArrayList, id_song);
+                lottieAnimationView.setVisibility(View.GONE);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                recyclerViewCreated.setLayoutManager(linearLayoutManager);
+                recyclerViewCreated.setAdapter(playlistAdapterCreated);
+            }
+
+            @Override
+            public void onFailure(Call<List<Playlist>> call, Throwable t) {
+
+            }
+        });
+
+        button_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+
+        alertDialog.getWindow().setContentView(dialogView);
+        alertDialog.getWindow().setDimAmount(0.85f);
+        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE|WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 }

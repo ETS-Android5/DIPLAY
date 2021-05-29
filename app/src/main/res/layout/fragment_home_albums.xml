@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:text="Albums"
+            android:text="@string/Albums"
             android:textColor="@color/white"
             android:fontFamily="@font/productsans_bold"
             android:textSize="@dimen/text_size_x_large"/>
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:text="Popular albums from the Diplay community"
+            android:text="@string/popular_albums_from_the_diplay_community"
             android:textColor="#99FFFFFF"
             android:fontFamily="@font/productsans_light"
             android:textSize="13sp"/>
@@ -58,6 +58,19 @@
             app:layout_constraintTop_toBottomOf="@id/subtitle"
             app:layout_constraintRight_toRightOf="parent"
             android:background="@drawable/gradient_title"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_loading"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+            app:lottie_fileName="43557-loading-musick-track.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            android:alpha="0.2"
+            app:layout_constraintTop_toBottomOf="@id/buttonViewMore"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package app.dinhcuong.diplay.Adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ public class SongFavoriteAdapter extends RecyclerView.Adapter<SongFavoriteAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_home_song_cirlce, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_song_circle_big_center, parent, false);
 
         return new ViewHolder(view);
     }
@@ -56,7 +57,36 @@ public class SongFavoriteAdapter extends RecyclerView.Adapter<SongFavoriteAdapte
         holder.nameSongFavorite.setText(songFavorite.getNameSong());
         holder.nameSinger.setText(songFavorite.getNameSinger());
         Picasso.get().load(songFavorite.getImageSong()).into(holder.imageSongFavorite);
+
+        //Set ImageButton like
+        setButtonLike(songFavorite, holder.heartButton);
     }
+
+    private void setButtonLike(Song song, ImageButton heartButton) {
+
+        DataService dataService = APIService.getService();
+        SharedPreferences pref = context.getSharedPreferences("Auth", context.MODE_PRIVATE);
+        String id_user_SP = pref.getString("id_user","0");
+
+        Call<String> callback = dataService.handlerLikeForSong(id_user_SP, song.getIdSong(), "0", "checkLiked");
+        callback.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String result = response.body();
+                if (result.equals("LIKED")){
+                    heartButton.setBackgroundResource(R.drawable.ic_fluent_heart_24_filled);
+                } else  {
+                    heartButton.setBackgroundResource(R.drawable.ic_fluent_heart_24_regular);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+    }
+
 
     @Override
     public int getItemCount() {
@@ -67,7 +97,7 @@ public class SongFavoriteAdapter extends RecyclerView.Adapter<SongFavoriteAdapte
         ImageView imageSongFavorite;
         TextView nameSongFavorite;
         TextView nameSinger;
-        ImageButton imageButton;
+        ImageButton heartButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,24 +105,71 @@ public class SongFavoriteAdapter extends RecyclerView.Adapter<SongFavoriteAdapte
             imageSongFavorite = itemView.findViewById(R.id.image_song_favorite);
             nameSongFavorite = itemView.findViewById(R.id.name_song_favorite);
             nameSinger = itemView.findViewById(R.id.name_singer);
-            imageButton = itemView.findViewById(R.id.heartButton);
-            imageButton.setOnClickListener(new View.OnClickListener() {
+            heartButton = itemView.findViewById(R.id.heartButton);
+            heartButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     DataService dataService = APIService.getService();
-                    Call<String> callback =dataService.handlerLikeForSong(songFavoriteArrayList.get(getPosition()).getIdSong(), "1", "like");
+                    SharedPreferences pref = context.getSharedPreferences("Auth", context.MODE_PRIVATE);
+                    String id_user_SP = pref.getString("id_user","0");
+
+                    Call<String> callback = dataService.handlerLikeForSong(id_user_SP, songFavoriteArrayList.get(getPosition()).getIdSong(), "0", "checkLiked");
                     callback.enqueue(new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
                             String result = response.body();
-                            if (result.equals("SUCCESS")){
-                                imageButton.setBackgroundResource(R.drawable.ic_fluent_heart_24_filled);
-                                Toast.makeText(context, "Liked", Toast.LENGTH_SHORT).show();
+                            if (result.equals("LIKED")){
+                                DataService dataService = APIService.getService();
+                                SharedPreferences pref = context.getSharedPreferences("Auth", context.MODE_PRIVATE);
+                                String id_user_SP = pref.getString("id_user","0");
 
+                                Call<String> callback = dataService.handlerLikeForSong(id_user_SP, songFavoriteArrayList.get(getPosition()).getIdSong(), "1", "unlike");
+                                callback.enqueue(new Callback<String>() {
+                                    @Override
+                                    public void onResponse(Call<String> call, Response<String> response) {
+                                        String result = response.body();
+                                        if (result.equals("SUCCESS")){
+                                            heartButton.setBackgroundResource(R.drawable.ic_fluent_heart_24_regular);
+                                            Toast.makeText(context, "Disliked", Toast.LENGTH_SHORT).show();
+
+                                        } else  {
+                                            Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<String> call, Throwable t) {
+
+                                    }
+                                });
                             } else  {
-                                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
-                            }
+                                DataService dataService = APIService.getService();
+                                SharedPreferences pref = context.getSharedPreferences("Auth", context.MODE_PRIVATE);
+                                String id_user_SP = pref.getString("id_user","0");
 
+                                Call<String> callback = dataService.handlerLikeForSong(id_user_SP, songFavoriteArrayList.get(getPosition()).getIdSong(), "1", "like");
+                                callback.enqueue(new Callback<String>() {
+                                    @Override
+                                    public void onResponse(Call<String> call, Response<String> response) {
+                                        String result = response.body();
+                                        if (result.equals("SUCCESS")){
+                                            heartButton.setBackgroundResource(R.drawable.ic_fluent_heart_24_filled);
+                                            Toast.makeText(context, "Liked", Toast.LENGTH_SHORT).show();
+
+                                        } else  {
+                                            Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<String> call, Throwable t) {
+
+                                    }
+                                });
+                            }
                         }
 
                         @Override
@@ -100,6 +177,10 @@ public class SongFavoriteAdapter extends RecyclerView.Adapter<SongFavoriteAdapte
 
                         }
                     });
+
+
+
+
                 }
             });
 

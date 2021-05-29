@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,12 +30,14 @@ public class HomeSongFavoriteFragment extends Fragment {
     View view;
     RecyclerView recyclerView;
     SongFavoriteAdapter songFavoriteAdapter;
+    LottieAnimationView animationView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home_favorite_song, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view_items);
+        animationView = view.findViewById(R.id.animation_loading);
         
         getData();
         return view;
@@ -46,6 +50,7 @@ public class HomeSongFavoriteFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
                 ArrayList<Song> songFavoriteArrayList = (ArrayList<Song>) response.body();
+                animationView.setVisibility(View.GONE);
                 songFavoriteAdapter = new SongFavoriteAdapter(getActivity(), songFavoriteArrayList);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                 linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);

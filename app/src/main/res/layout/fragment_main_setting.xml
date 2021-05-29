@@ -6,11 +6,14 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_library"
     android:theme="@style/Theme.DIPLAY">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp">
+
+
 
         <TextView
             android:id="@+id/title"
@@ -51,16 +54,44 @@
             android:fontFamily="@font/productsans_light"
             android:textColor="@color/white"/>
 
+            <TextView
+                android:id="@+id/button_edit_profile_info"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3"
+                android:text="@string/EDIT_PROFILE"
+                android:fontFamily="@font/productsans_bold"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:background="@drawable/button_setting"/>
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="10dp"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/ic_fluent_document_edit_24_regular"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="@color/white"
+                app:layout_constraintStart_toStartOf="@id/button_edit_profile_info"
+                app:layout_constraintTop_toTopOf="@id/button_edit_profile_info"
+                app:layout_constraintBottom_toBottomOf="@id/button_edit_profile_info"/>
+
+
+
         <TextView
-            android:id="@+id/button_edit_profile"
+            android:id="@+id/button_edit_profile_password"
             android:layout_width="300dp"
             android:layout_height="50dp"
+            android:layout_marginTop="25dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.3"
-            android:text="@string/EDIT_PROFILE"
+            app:layout_constraintTop_toBottomOf="@id/button_edit_profile_info"
+            android:text="@string/CHANGE_PASSWORD"
             android:fontFamily="@font/productsans_bold"
             android:textColor="@color/white"
             android:gravity="center"
@@ -71,12 +102,12 @@
             android:layout_height="30dp"
             android:padding="10dp"
             android:layout_marginLeft="15dp"
-            android:src="@drawable/ic_fluent_document_edit_24_regular"
+            android:src="@drawable/ic_fluent_key_24_regular"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="@color/white"
-            app:layout_constraintStart_toStartOf="@id/button_edit_profile"
-            app:layout_constraintTop_toTopOf="@id/button_edit_profile"
-            app:layout_constraintBottom_toBottomOf="@id/button_edit_profile"/>
+            app:layout_constraintStart_toStartOf="@id/button_edit_profile_password"
+            app:layout_constraintTop_toTopOf="@id/button_edit_profile_password"
+            app:layout_constraintBottom_toBottomOf="@id/button_edit_profile_password"/>
 
         <TextView
             android:id="@+id/button_language"
@@ -85,7 +116,7 @@
             android:layout_marginTop="25dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_edit_profile"
+            app:layout_constraintTop_toBottomOf="@id/button_edit_profile_password"
             android:text="@string/LANGUAGE"
             android:fontFamily="@font/productsans_bold"
             android:textColor="@color/white"
@@ -156,6 +187,32 @@
             app:layout_constraintStart_toStartOf="@id/button_log_out"
             app:layout_constraintTop_toTopOf="@id/button_log_out"
             app:layout_constraintBottom_toBottomOf="@id/button_log_out"/>
+
+        <TextView
+            android:id="@+id/button_delete_account"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_log_out"
+            android:text="@string/DELETE_ACCOUNT"
+            android:fontFamily="@font/productsans_bold"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:background="@drawable/button_red_rounded"/>
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="10dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_fluent_delete_24_regular"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="@color/white"
+            app:layout_constraintStart_toStartOf="@id/button_delete_account"
+            app:layout_constraintTop_toTopOf="@id/button_delete_account"
+            app:layout_constraintBottom_toBottomOf="@id/button_delete_account"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package app.dinhcuong.diplay.Adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 
 import app.dinhcuong.diplay.Model.Mood;
 import app.dinhcuong.diplay.R;
+import app.dinhcuong.diplay.Fragment.ViewAllMoodItemsFragment;
 
 public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.ViewHolder> {
     Context context;
@@ -55,7 +58,19 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.ViewHolder> {
             super(itemView);
             imageMood = itemView.findViewById(R.id.image_item);
             nameMood = itemView.findViewById(R.id.name_item);
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                    Bundle bundle = new Bundle();
+                    ViewAllMoodItemsFragment viewAllMoodItemsFragment = new ViewAllMoodItemsFragment();
+                    bundle.putString("id_mood", moodArrayList.get(getAdapterPosition()).getIdMood());
+                    bundle.putString("name_mood", moodArrayList.get(getAdapterPosition()).getNameMood());
+                    bundle.putString("image_mood", moodArrayList.get(getAdapterPosition()).getImageMood());
+                    viewAllMoodItemsFragment.setArguments(bundle);
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, viewAllMoodItemsFragment).addToBackStack(null).commit();
+                }
+            });
         }
     }
 }

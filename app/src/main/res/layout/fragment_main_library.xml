@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_library"
+    android:layout_marginBottom="90dp"
     android:theme="@style/Theme.DIPLAY">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_title"
@@ -56,7 +57,9 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_paper_library"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tab_layout"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

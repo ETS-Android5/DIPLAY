@@ -21,7 +21,7 @@ tools:context=".Fragment.HomeSongFavoriteFragment">
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="More of what you like"
+        android:text="@string/More_of_what_you_like"
         android:textColor="@color/white"
         android:fontFamily="@font/productsans_bold"
         android:textSize="@dimen/text_size_x_large"/>
@@ -32,24 +32,12 @@ tools:context=".Fragment.HomeSongFavoriteFragment">
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="Suggestions based on what you're liked or played"
+        android:text="@string/suggestions_based_on_what_you_re_liked_or_played"
         android:textColor="#99FFFFFF"
         android:fontFamily="@font/productsans_light"
         android:textSize="13sp"/>
 
 
-    <ImageButton
-        android:id="@+id/buttonViewMore"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:layout_marginRight="10dp"
-        android:padding="40dp"
-        android:tint="#99FFFFFF"
-        android:src="@drawable/ic_fluent_chevron_right_24_regular"
-        app:layout_constraintTop_toTopOf="@id/title"
-        app:layout_constraintBottom_toBottomOf="@id/subtitle"
-        app:layout_constraintRight_toRightOf="parent" />
 
     <View
         android:layout_width="match_parent"
@@ -58,6 +46,19 @@ tools:context=".Fragment.HomeSongFavoriteFragment">
         app:layout_constraintTop_toBottomOf="@id/subtitle"
         app:layout_constraintRight_toRightOf="parent"
         android:background="@drawable/gradient_title"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_loading"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        app:lottie_fileName="43557-loading-musick-track.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        android:alpha="0.2"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

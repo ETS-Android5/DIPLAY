@@ -29,12 +29,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.8">
 
+
+        <TextView
+            android:id="@+id/change_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="@string/LANGUAGE"
+            android:textSize="16sp"
+            android:fontFamily="@font/productsans_light"
+            android:textColor="@color/white"
+            android:background="@drawable/button_setting"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/button_login"
+            android:gravity="center"/>
         <TextView
             android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="20dp"
-            android:text="LOGIN"
+            android:text="@string/LOGIN"
             android:textSize="16sp"
             android:fontFamily="@font/productsans_black"
             android:textColor="@color/white"
@@ -48,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="20dp"
-            android:text="REGISTER"
+            android:text="@string/REGISTER"
             android:textSize="16sp"
             android:fontFamily="@font/productsans_black"
             android:textColor="@color/white"

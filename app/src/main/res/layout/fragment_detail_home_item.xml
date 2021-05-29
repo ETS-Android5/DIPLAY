@@ -7,7 +7,7 @@
     android:background="#1E1E1E"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.DetailHomePlaylistItemFragment"
-    android:id="@+id/coordinator_layout_playlist">
+    android:id="@+id/coordinator_layout_item">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -20,19 +20,19 @@
             app:expandedTitleGravity="start|bottom"
             app:expandedTitleMarginBottom="10dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            android:id="@+id/collapsing_toolbar_layout_playlist">
+            android:id="@+id/collapsing_toolbar_layout_item">
 
             <ImageView
-                android:id="@+id/image_playlist_background"
+                android:id="@+id/image_item_background"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/playlists"/>
+                android:src="@drawable/items"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/gradient_toolbar_playlist" />
+                android:background="@drawable/gradient_toolbar_item" />
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                android:id="@+id/toolbar_playlist"
+                android:id="@+id/toolbar_item"
                 android:elevation="6dp"
                 app:navigationIcon="?attr/homeAsUpIndicator">
             </androidx.appcompat.widget.Toolbar>
@@ -55,29 +55,26 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/playlists"
-                    android:id="@+id/image_playlist"/>
+                    android:src="@drawable/items"
+                    android:id="@+id/image_item"/>
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/text_name_playlist"
+                android:id="@+id/button_follow"
                 android:layout_width="wrap_content"
+                android:maxWidth="300dp"
                 android:layout_height="wrap_content"
-                android:text="70s Year of Student"
-                android:visibility="invisible"
-                android:layout_gravity="center|bottom"
-                android:fontFamily="@font/productsans_bold"
-                android:textColor="@color/white"
-                android:layout_marginBottom="100dp"/>
-            <TextView
-                android:id="@+id/text_name_singer"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="FOLLOW"
+                android:paddingLeft="7dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/ic_fluent_communication_16_filled"
+                android:drawableTint="@color/white"
+                android:text="@string/FOLLOW"
                 android:gravity="center"
                 android:layout_gravity="center|bottom"
-                android:fontFamily="@font/productsans_light"
+                android:fontFamily="@font/productsans_medium"
                 android:background="@drawable/button_white_30"
                 android:textColor="@color/white"
                 android:textSize="12sp"
@@ -89,7 +86,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/playlist_floating_action_button"
+        android:id="@+id/item_floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         app:layout_anchor="@id/appbar_layout"
@@ -97,7 +94,7 @@
         android:backgroundTint="@color/white"
         android:layout_marginRight="20dp"
         app:elevation="6dp"
-        android:text="Play Now"
+        android:text="@string/PLAY_NOW"
         android:fontFamily="@font/productsans_bold"
         app:borderWidth="0dp"
         app:icon="@drawable/ic_fluent_play_circle_16_filled"/>
@@ -107,14 +104,125 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/layout_background_playlist">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_playlist"
-            android:paddingTop="30dp"
+        android:background="@drawable/layout_background_item">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:id="@+id/layout_title">
+                <TextView
+                    android:id="@+id/followsOfItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/nameItem"
+                    app:layout_constraintLeft_toLeftOf="parent"
 
-        </androidx.recyclerview.widget.RecyclerView>
+                    android:drawableLeft="@drawable/ic_fluent_communication_16_regular"
+                    android:drawableTint="#99FFFFFF"
+                    android:drawablePadding="5dp"
+                    android:text="12893 follows"
+                    android:textColor="#99FFFFFF"
+                    android:fontFamily="@font/productsans_light"
+                    android:textSize="14sp"/>
+                <ImageButton
+                    android:id="@+id/icon_dot"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/ic_fluent_circle_small_20_regular"
+                    android:backgroundTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/followsOfItem"
+                    app:layout_constraintLeft_toRightOf="@id/followsOfItem"
+                    app:layout_constraintRight_toLeftOf="@id/numbersOfItem"
+                    app:layout_constraintTop_toTopOf="@id/followsOfItem" />
+
+                <TextView
+                    android:id="@+id/numbersOfItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    app:layout_constraintTop_toTopOf="@id/followsOfItem"
+                    app:layout_constraintLeft_toRightOf="@id/icon_dot"
+                    android:drawableLeft="@drawable/ic_fluent_music_note_2_16_filled"
+                    android:drawableTint="#99FFFFFF"
+                    android:drawablePadding="5dp"
+                    android:text="12 songs"
+                    android:textColor="#99FFFFFF"
+                    android:fontFamily="@font/productsans_light"
+                    android:textSize="14sp"/>
+
+
+                <TextView
+                    android:id="@+id/nameItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:text="My Weekend"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/productsans_bold"
+                    android:textSize="@dimen/text_size_x_large"/>
+
+
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="2dp"
+                    app:layout_constraintTop_toBottomOf="@id/followsOfItem"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:background="@drawable/gradient_title"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/layout_title">
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animation_loading"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    app:lottie_fileName="43557-loading-musick-track.json"
+                    android:alpha="0.2"
+                    app:lottie_loop="true"
+                    app:lottie_autoPlay="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <TextView
+                    android:id="@+id/text_nodata_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:text="@string/not_found_data"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/productsans_lightitalic"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_item"
+                    android:paddingTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.core.widget.NestedScrollView>
 

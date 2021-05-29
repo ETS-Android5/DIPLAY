@@ -42,11 +42,14 @@
     <TextView
         android:id="@+id/name_song"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:maxWidth="250dp"
+        android:layout_height="wrap_content"
         android:text="Hom nay toi buon"
         android:textColor="@color/white"
         android:fontFamily="@font/productsans_bold"
         android:textSize="14sp"
+        android:maxLines="1"
+        android:ellipsize="end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/card_image_song"
@@ -56,13 +59,52 @@
     <TextView
         android:id="@+id/name_singer"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:maxWidth="250dp"
+        android:layout_height="wrap_content"
         android:text="Phung Khanh Linh"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textColor="@color/white"
         android:fontFamily="@font/productsans_light"
         android:textSize="12sp"
         app:layout_constraintTop_toBottomOf="@id/name_song"
         app:layout_constraintStart_toStartOf="@id/name_song"/>
+
+    <!--
+    <ImageButton
+        android:id="@+id/heartButton"
+        app:layout_constraintTop_toTopOf="@id/card_image_song"
+        app:layout_constraintBottom_toBottomOf="@id/card_image_song"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/ic_fluent_heart_24_regular"
+        android:backgroundTint="@color/white"/>
+    -->
+    <TextView
+        android:id="@+id/duration_song"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/card_image_song"
+        app:layout_constraintBottom_toBottomOf="@id/card_image_song"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text=""
+        android:textSize="12sp"
+        android:layout_marginBottom="2dp"
+        android:fontFamily="@font/productsans_light"
+        android:textColor="@color/white"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_loading"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:lottie_fileName="43557-loading-musick-track.json"
+        android:alpha="0.2"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        app:layout_constraintTop_toTopOf="@id/card_image_song"
+        app:layout_constraintBottom_toBottomOf="@id/card_image_song"
+        app:layout_constraintRight_toRightOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

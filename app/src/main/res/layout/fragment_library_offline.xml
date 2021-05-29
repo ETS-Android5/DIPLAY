@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.DIPLAY"
-    android:layout_marginBottom="100dp">
+    android:theme="@style/Theme.DIPLAY">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -72,11 +71,13 @@
     <androidx.core.widget.NestedScrollView
         app:layout_constraintTop_toBottomOf="@id/layout_title"
         android:layout_width="match_parent"
-        android:layout_height="500dp">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_library_offline"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp">
 
         </androidx.recyclerview.widget.RecyclerView>
 

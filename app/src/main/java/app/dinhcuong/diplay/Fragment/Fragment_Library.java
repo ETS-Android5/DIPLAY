@@ -30,6 +30,7 @@ public class Fragment_Library extends Fragment {
         viewPager = view.findViewById(R.id.view_paper_library);
 
         LibraryViewPagerAdapter libraryViewPagerAdapter = new LibraryViewPagerAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, getContext());
+
         viewPager.setAdapter(libraryViewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         return view;

@@ -3,7 +3,9 @@ package app.dinhcuong.diplay.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Album {
+import java.io.Serializable;
+
+public class Album implements Serializable {
 
     @SerializedName("id_album")
     @Expose
@@ -17,9 +19,15 @@ public class Album {
     @SerializedName("id_singer")
     @Expose
     private String idSinger;
-    @SerializedName("likes_album")
+    @SerializedName("follows_album")
     @Expose
-    private String likesAlbum;
+    private String followsAlbum;
+    @SerializedName("size_album")
+    @Expose
+    private Integer sizeAlbum;
+    @SerializedName("name_singer")
+    @Expose
+    private Object nameSinger;
 
     public String getIdAlbum() {
         return idAlbum;
@@ -53,12 +61,28 @@ public class Album {
         this.idSinger = idSinger;
     }
 
-    public String getLikesAlbum() {
-        return likesAlbum;
+    public String getFollowsAlbum() {
+        return followsAlbum;
     }
 
-    public void setLikesAlbum(String likesAlbum) {
-        this.likesAlbum = likesAlbum;
+    public void setFollowsAlbum(String followsAlbum) {
+        this.followsAlbum = followsAlbum;
+    }
+
+    public Integer getSizeAlbum() {
+        return sizeAlbum;
+    }
+
+    public void setSizeAlbum(Integer sizeAlbum) {
+        this.sizeAlbum = sizeAlbum;
+    }
+
+    public Object getNameSinger() {
+        return nameSinger;
+    }
+
+    public void setNameSinger(Object nameSinger) {
+        this.nameSinger = nameSinger;
     }
 
 }

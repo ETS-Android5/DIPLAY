@@ -91,6 +91,7 @@ public class LoginLoginFragment extends Fragment {
                     SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("Auth", 0); // 0 - for private mode
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putBoolean("isLogin", true);
+                    editor.putString("id_user", result.getIdUser());
                     editor.putString("name_user", result.getNameUser());
                     editor.putString("email_user", result.getEmailUser());
                     editor.putString("password_user", result.getPasswordUser());

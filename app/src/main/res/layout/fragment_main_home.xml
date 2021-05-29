@@ -82,6 +82,12 @@
             <fragment
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:name="app.dinhcuong.diplay.Fragment.HomeSingerFragment"
+                android:id="@+id/fragment_home_singer"/>
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:name="app.dinhcuong.diplay.Fragment.HomePlaylistsFragment"
                 android:id="@+id/fragment_home_playlists"/>
 

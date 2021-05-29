@@ -1,8 +1,11 @@
 package app.dinhcuong.diplay.Fragment;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +16,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.squareup.picasso.Picasso;
@@ -38,6 +45,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static java.lang.Integer.parseInt;
+
 
 public class DetailHomePlaylistItemFragment extends Fragment {
 
@@ -52,8 +61,14 @@ public class DetailHomePlaylistItemFragment extends Fragment {
     ArrayList<Song> songArrayList;
     ListSongsAdapter listSongsAdapter;
 
+    TextView followButton, namePlaylist, numbersOfFollows, numbersOfSongs, noDataText;
+
+    LottieAnimationView lottieAnimationView;
+
 
     TextView name_playlist;
+
+    int followsOfPlaylist;
 
     private ISendDataListenerArray iSendDataListenerArray;
     public interface ISendDataListenerArray {
@@ -73,7 +88,7 @@ public class DetailHomePlaylistItemFragment extends Fragment {
         init();
 
         if (playlist != null && !playlist.getNamePlaylist().equals("")){
-            setValueInView(playlist.getNamePlaylist(), playlist.getImagePlaylist());
+            setValueInView(R.string.VIEW_IN_PLAYLIST, playlist.getNamePlaylist(), playlist.getFollowsPlaylist(), playlist.getSizePlaylist(), playlist.getImagePlaylist());
             getDataPlaylist(playlist.getIdPlaylist());
             eventClick();
         }
@@ -81,14 +96,19 @@ public class DetailHomePlaylistItemFragment extends Fragment {
     }
 
     private void mapping() {
-        collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar_layout_playlist);
-        coordinatorLayout = view.findViewById(R.id.coordinator_layout_playlist);
-        recyclerView = view.findViewById(R.id.recycler_playlist);
-        toolbar = view.findViewById(R.id.toolbar_playlist);
-        extendedFloatingActionButton = view.findViewById(R.id.playlist_floating_action_button);
-        imageViewBackground = view.findViewById(R.id.image_playlist_background);
-        imageViewPlaylist = view.findViewById(R.id.image_playlist);
-        name_playlist = view.findViewById(R.id.text_name_playlist);
+        collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar_layout_item);
+        coordinatorLayout = view.findViewById(R.id.coordinator_layout_item);
+        recyclerView = view.findViewById(R.id.recycler_item);
+        toolbar = view.findViewById(R.id.toolbar_item);
+        extendedFloatingActionButton = view.findViewById(R.id.item_floating_action_button);
+        imageViewBackground = view.findViewById(R.id.image_item_background);
+        imageViewPlaylist = view.findViewById(R.id.image_item);
+        followButton = view.findViewById(R.id.button_follow);
+        namePlaylist = view.findViewById(R.id.nameItem);
+        numbersOfFollows = view.findViewById(R.id.followsOfItem);
+        numbersOfSongs = view.findViewById(R.id.numbersOfItem);
+        lottieAnimationView = view.findViewById(R.id.animation_loading);
+        noDataText = view.findViewById(R.id.text_nodata_item);
     }
 
     private void init() {
@@ -110,7 +130,93 @@ public class DetailHomePlaylistItemFragment extends Fragment {
         });
         extendedFloatingActionButton.setEnabled(false);
 
-        name_playlist.setText(playlist.getNamePlaylist());
+        followsOfPlaylist = parseInt(playlist.getFollowsPlaylist());
+        followButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DataService dataService = APIService.getService();
+                SharedPreferences pref = getActivity().getSharedPreferences("Auth", getActivity().MODE_PRIVATE);
+                String id_user_SP = pref.getString("id_user","0");
+
+
+
+                Call<String> callback = dataService.handlerFollowForPlaylist(id_user_SP, playlist.getIdPlaylist(), "0", "checkFollowing");
+                callback.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        String result = response.body();
+                        if (result.equals("FOLLOWING")){
+                            DataService dataService = APIService.getService();
+                            SharedPreferences pref = getActivity().getSharedPreferences("Auth", getActivity().MODE_PRIVATE);
+                            String id_user_SP = pref.getString("id_user","0");
+
+                            Call<String> callback = dataService.handlerFollowForPlaylist(id_user_SP, playlist.getIdPlaylist(), "1", "unfollow");
+                            callback.enqueue(new Callback<String>() {
+                                @Override
+                                public void onResponse(Call<String> call, Response<String> response) {
+                                    String result = response.body();
+                                    if (result.equals("SUCCESS")){
+                                        followButton.setText(R.string.FOLLOW);
+                                        followsOfPlaylist = followsOfPlaylist-1;
+                                        String followsOfPlaylistText = getResources().getQuantityString(R.plurals.numberOfFollows, followsOfPlaylist, followsOfPlaylist);
+                                        numbersOfFollows.setText(followsOfPlaylistText);
+                                        Toast.makeText(getActivity(), "Unfollow", Toast.LENGTH_SHORT).show();
+
+                                    } else  {
+                                        Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<String> call, Throwable t) {
+
+                                }
+                            });
+                        } else  {
+                            DataService dataService = APIService.getService();
+                            SharedPreferences pref = getActivity().getSharedPreferences("Auth", getActivity().MODE_PRIVATE);
+                            String id_user_SP = pref.getString("id_user","0");
+
+                            Call<String> callback = dataService.handlerFollowForPlaylist(id_user_SP, playlist.getIdPlaylist(), "1", "follow");
+                            callback.enqueue(new Callback<String>() {
+                                @Override
+                                public void onResponse(Call<String> call, Response<String> response) {
+                                    String result = response.body();
+                                    if (result.equals("SUCCESS")){
+                                        followButton.setText(R.string.FOLLOWING);
+
+                                        followsOfPlaylist = followsOfPlaylist+1;
+                                        String followsOfPlaylistText = getResources().getQuantityString(R.plurals.numberOfFollows, followsOfPlaylist, followsOfPlaylist);
+                                        numbersOfFollows.setText(followsOfPlaylistText);
+
+                                        Toast.makeText(getActivity(), "Following", Toast.LENGTH_SHORT).show();
+
+                                    } else  {
+                                        Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<String> call, Throwable t) {
+
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                    }
+                });
+
+                //followButton.setText(R.string.FOLLOWING);
+            }
+        });
+
 
     }
 
@@ -121,11 +227,18 @@ public class DetailHomePlaylistItemFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
                 songArrayList = (ArrayList<Song>) response.body();
-                listSongsAdapter = new ListSongsAdapter(getActivity(), songArrayList);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                recyclerView.setLayoutManager(linearLayoutManager);
-                recyclerView.setAdapter(listSongsAdapter);
+                if(songArrayList.size() > 0){
+                    listSongsAdapter = new ListSongsAdapter(getActivity(), songArrayList);
+                    lottieAnimationView.setVisibility(View.GONE);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                    linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                    recyclerView.setLayoutManager(linearLayoutManager);
+                    recyclerView.setAdapter(listSongsAdapter);
+                } else {
+                    noDataText.setVisibility(View.VISIBLE);
+                    lottieAnimationView.setVisibility(View.GONE);
+                }
+
 
             }
 
@@ -138,12 +251,48 @@ public class DetailHomePlaylistItemFragment extends Fragment {
 
     }
 
-    private void setValueInView(String name, String image) {
-        collapsingToolbarLayout.setTitle(name);
+    private void setValueInView(int playlist,String namePlaylistInput, String followsPlaylist, int sizePlaylist,  String image) {
+        setButtonFollow();
+        String title = getResources().getString(playlist);
+        namePlaylist.setText(namePlaylistInput);
+
+        String numbersOfSongsText = getResources().getQuantityString(R.plurals.numberOfSongs, sizePlaylist, sizePlaylist);
+        numbersOfSongs.setText(numbersOfSongsText);
+
+        String followsOfPlaylistText = getResources().getQuantityString(R.plurals.numberOfFollows, parseInt(followsPlaylist), parseInt(followsPlaylist));
+        numbersOfFollows.setText(followsOfPlaylistText);
+
+        collapsingToolbarLayout.setTitle(title);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         Picasso.get().load(image).transform(new BlurTransformation(getContext(), 15, 1)).into(imageViewBackground);
         Picasso.get().load(image).into(imageViewPlaylist);
+
+    }
+
+    private void setButtonFollow() {
+
+        DataService dataService = APIService.getService();
+        SharedPreferences pref = getActivity().getSharedPreferences("Auth", getActivity().MODE_PRIVATE);
+        String id_user_SP = pref.getString("id_user","0");
+
+        Call<String> callback = dataService.handlerFollowForPlaylist(id_user_SP, playlist.getIdPlaylist(), "0", "checkFollowing");
+        callback.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String result = response.body();
+                if (result.equals("FOLLOWING")){
+                    followButton.setText(R.string.FOLLOWING);
+                } else  {
+                    followButton.setText(R.string.FOLLOW);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
     }
 
     private void getData() {
@@ -171,10 +320,11 @@ public class DetailHomePlaylistItemFragment extends Fragment {
                 //Declare Interface
                 iSendDataListenerArray = (ISendDataListenerArray) getActivity();
                 //Use Interface to send data to MainActivity
-                iSendDataListenerArray.sendDataForPlaybackArray(songArrayList, false, playlist.getNamePlaylist(), "PLAYLIST");
+                iSendDataListenerArray.sendDataForPlaybackArray(songArrayList, false, playlist.getNamePlaylist(), getActivity().getResources().getString(R.string.PLAYLIST));
 
                 //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.bottomPlaybackFragment, playbackFragment).addToBackStack(null).commit();
             }
         });
     }
+
 }

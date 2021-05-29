@@ -16,6 +16,12 @@ public class Playlist implements Serializable {
     @SerializedName("image_playlist")
     @Expose
     private String imagePlaylist;
+    @SerializedName("follows_playlist")
+    @Expose
+    private String followsPlaylist;
+    @SerializedName("size_playlist")
+    @Expose
+    private Integer sizePlaylist;
 
     public String getIdPlaylist() {
         return idPlaylist;
@@ -39,6 +45,22 @@ public class Playlist implements Serializable {
 
     public void setImagePlaylist(String imagePlaylist) {
         this.imagePlaylist = imagePlaylist;
+    }
+
+    public String getFollowsPlaylist() {
+        return followsPlaylist;
+    }
+
+    public void setFollowsPlaylist(String followsPlaylist) {
+        this.followsPlaylist = followsPlaylist;
+    }
+
+    public Integer getSizePlaylist() {
+        return sizePlaylist;
+    }
+
+    public void setSizePlaylist(Integer sizePlaylist) {
+        this.sizePlaylist = sizePlaylist;
     }
 
 }

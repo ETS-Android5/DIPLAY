@@ -27,6 +27,9 @@ import java.util.Locale;
 import app.dinhcuong.diplay.Adapter.ListSongsAdapter;
 import app.dinhcuong.diplay.Adapter.LocalSongAdapter;
 import app.dinhcuong.diplay.Adapter.SongFavoriteAdapter;
+import app.dinhcuong.diplay.Fragment.DetailHomeAlbumItemFragment;
+import app.dinhcuong.diplay.Fragment.DetailPlaylistCreatedItemFragment;
+import app.dinhcuong.diplay.Fragment.DetailPlaylistLikedSongsItemFragment;
 import app.dinhcuong.diplay.Fragment.LibraryOfflineFragment;
 import app.dinhcuong.diplay.Fragment.PlaybackBottomScreenFragment;
 import app.dinhcuong.diplay.Model.Song;
@@ -37,9 +40,13 @@ import app.dinhcuong.diplay.Fragment.DetailHomePlaylistItemFragment;
 public class MainActivity extends AppCompatActivity implements
         ListSongsAdapter.ISendDataListener,
         DetailHomePlaylistItemFragment.ISendDataListenerArray,
+        DetailPlaylistCreatedItemFragment.ISendDataListenerArray,
+        DetailPlaylistLikedSongsItemFragment.ISendDataListenerArray,
+        DetailHomeAlbumItemFragment.ISendDataListenerArray,
         SongFavoriteAdapter.ISendDataListener,
         LocalSongAdapter.ISendDataListener,
-        LibraryOfflineFragment.ISendDataListenerArray{
+        LibraryOfflineFragment.ISendDataListenerArray
+        {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     ChipNavigationBar bottomNavigationView;
@@ -133,6 +140,13 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void updateSizePlaylist(int sizePlaylist) {
+        DetailPlaylistCreatedItemFragment detailPlaylistCreatedItemFragment = (DetailPlaylistCreatedItemFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        detailPlaylistCreatedItemFragment.updateSizePlaylist(sizePlaylist);
+    }
+
+
+    @Override
     public void sendDataForPlayback(Song songArrayListSend, boolean MODE_OFFLINE, String name_playlist, String source) {
         PlaybackFragment playbackFragment = (PlaybackFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_playback_screen);
         playbackFragment.reloadData(songArrayListSend, MODE_OFFLINE, name_playlist, source);
@@ -161,4 +175,6 @@ public class MainActivity extends AppCompatActivity implements
         }
         Log.e("ACB" + language, "ANC");
     }
-}
+
+
+        }

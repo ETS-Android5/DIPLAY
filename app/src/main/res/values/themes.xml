@@ -52,9 +52,9 @@
     </style>
 
     <style name="ExpandedAppBar" parent="Theme.DIPLAY">
-        <item name="android:fontFamily">@font/productsans_bold</item>
+        <item name="android:fontFamily">@font/productsans_light</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">#99FFFFFF</item>
         <item name="android:textStyle">bold</item>
     </style>
 

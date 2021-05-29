@@ -69,6 +69,8 @@ public class LibraryOfflineFragment extends Fragment {
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setAdapter(localSongAdapter);
+        } else {
+
         }
         button_play_now.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +78,9 @@ public class LibraryOfflineFragment extends Fragment {
                 //Declare Interface
                 iSendDataListenerArray = (ISendDataListenerArray) getActivity();
                 //Use Interface to send data to MainActivity
-                iSendDataListenerArray.sendDataForPlaybackArray(localSongArrayList, true, "LOCAL STORAGE", "LIBRARY");
+                String text_source = getContext().getResources().getString(R.string.LIBRARY);
+                String text_name_playlist = getContext().getResources().getString(R.string.LOCAL_STORAGE);
+                iSendDataListenerArray.sendDataForPlaybackArray(localSongArrayList, true, text_name_playlist, text_source);
             }
         });
     }

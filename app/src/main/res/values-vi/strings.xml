@@ -5,7 +5,6 @@
     <string name="good_afternoon">Chào buổi chiều</string>
     <string name="good_evening">Chào buổi tối</string>
     <string name="good_night">Chúc ngủ ngon</string>
-    <string name="got_it">Đã hiểu</string>
     <string name="PLAYLISTS">DANH SÁCH PHÁT</string>
     <string name="ALBUMS">BỘ SƯU TẬP</string>
     <string name="ARTISTS">CA SĨ</string>
@@ -16,7 +15,7 @@
     <string name="Setting">Cài đặt</string>
     <string name="CREATE_PLAYLIST">TẠO DANH SÁCH PHÁT</string>
     <string name="Liked_Song">"Bài hát đã thích "</string>
-    <string name="text_search">"Tìm kiếm tiêu đề, album, bài hát, thể loại hoặc danh sách phát "</string>
+    <string name="text_search">"Tìm kiếm album, bài hát hoặc danh sách phát "</string>
     <string name="PLAY_NOW">PHÁT NGAY</string>
     <string name="Local_music">Nhạc cục bộ</string>
     <string name="Songs_from_internal_storage">Bài hát từ bộ nhớ trong</string>
@@ -25,4 +24,104 @@
     <string name="ABOUT_APP">GIỚI THIỆU ỨNG DỤNG</string>
     <string name="LOGOUT">"ĐĂNG XUẤT  "</string>
     <string name="Choose_language">Chọn ngôn ngữ:</string>
+    <string name="CHILL_WITH_DIPLAY">THƯ GIÃN CÙNG DIPLAY</string>
+    <string name="Play_a_song">Phát một bài hát</string>
+    <string name="FOLLOW">THEO DÕI</string>
+    <string name="FOLLOWING">ĐANG THEO DÕI</string>
+    <string name="VIEW_IN_PLAYLIST">XEM TRONG DANH SÁCH PHÁT</string>
+    <string name="VIEW_IN_ALBUM">XEM TRONG BỘ SƯU TẬP</string>
+    <string name="ALBUM">BỘ SƯU TẬP</string>
+    <string name="PLAYLIST">DANH SÁCH PHÁT</string>
+
+    <!--Plurals-->
+    <plurals name="numberOfSongs">
+        <item quantity="one">%d bài hát</item>
+        <item quantity="other">%d bài hát</item>
+    </plurals>
+    <plurals name="numberOfSongsInAlbum">
+        <item quantity="one">%d bài hát</item>
+        <item quantity="other">%d bài hát</item>
+    </plurals>
+    <plurals name="numberOfSongsSelected">
+        <item quantity="one">%d song selected</item>
+        <item quantity="other">%d songs selected</item>
+        <item quantity="zero">No songs selected</item>
+    </plurals>
+    <plurals name="numberOfPlaylistsSelected">
+        <item quantity="one">%d playlist selected</item>
+        <item quantity="other">%d playlist selected</item>
+        <item quantity="zero">No playlist selected</item>
+    </plurals>
+    <plurals name="numberOfAlbums">
+        <item quantity="one">%d album</item>
+        <item quantity="other">%d albums</item>
+    </plurals>
+    <plurals name="numberOfPlaylists">
+        <item quantity="one">%d playlist</item>
+        <item quantity="other">%d playlists</item>
+    </plurals>
+
+    <plurals name="numberOfFollows">
+        <item quantity="one">%d theo dõi</item>
+        <item quantity="other">%d theo dõi</item>
+    </plurals>
+    <string name="CHANGE_PASSWORD">"ĐỔI MẬT KHẨU "</string>
+    <string name="DELETE_ACCOUNT">"XÓA TÀI KHOẢN "</string>
+    <string name="VIEW_INFOMATION_OF_SINGER">XEM THÔNG TIN CỦA CA SĨ</string>
+    <string name="MOODS">CÁC TÂM TRẠNG</string>
+    <string name="GENRES">"CÁC THỂ LOẠI "</string>
+    <string name="CONFIRM">"XÁC NHẬN  "</string>
+    <string name="do_you_want_to_delete_this_account">"Bạn có muốn xóa tài khoản này không? "</string>
+    <string name="repeat_new_password">"Lặp lại mật khẩu mới "</string>
+    <string name="confirm_password">"Xác nhận mật khẩu  "</string>
+    <string name="select_a_language">"Chọn một ngôn ngữ? "</string>
+    <string name="CANCEL">"HỦY "</string>
+    <string name="do_you_want_to_delete_this_playlist">"Bạn có muốn xóa danh sách phát này không? "</string>
+    <string name="HIDE">ẨN</string>
+    <string name="do_you_want_to_logout">"Bạn có muốn đăng xuất không? "</string>
+    <string name="Albums">Bộ sưu tập</string>
+    <string name="not_found_data">"Không tìm thấy dữ liệu! "</string>
+    <string name="Playlists">"Danh sách phát "</string>
+    <string name="LOGIN">"ĐĂNG NHẬP "</string>
+    <string name="REGISTER">"ĐĂNG KÝ "</string>
+    <string name="search_with">"Tìm kiếm với: "</string>
+    <string name="Name">"Tên "</string>
+    <string name="Email">Email</string>
+    <string name="Password">"Mật khẩu "</string>
+    <string name="Repeat_password">"Lặp lại mật khẩu  "</string>
+    <string name="CREATE">TẠO</string>
+    <string name="already_an_account_login">Đã có tài khoản? Đăng nhập</string>
+    <string name="don_t_have_an_account_register">"Không có tài khoản? Đăng ký "</string>
+    <string name="Created">Đã tạo</string>
+    <string name="playlists_you_have_created">"Danh sách phát bạn đã tạo "</string>
+    <string name="Followed">"Đã theo dõi "</string>
+    <string name="playlists_you_have_followed">"Danh sách phát bạn đã theo dõi "</string>
+    <string name="singers_you_have_followed">"Ca sĩ bạn đã theo dõi "</string>
+    <string name="albums_you_have_followed">"Bộ sưu tập bạn đã theo dõi "</string>
+    <string name="Singers">"Những ca sĩ "</string>
+    <string name="popular_singers_from_the_diplay_community">"Những ca sĩ nổi tiếng từ cộng đồng Diplay "</string>
+    <string name="popular_playlists_from_the_diplay_community">Danh sách phát phổ biến từ cộng đồng Diplay</string>
+    <string name="Genres">Thể loại</string>
+    <string name="Moods">"Tâm trạng "</string>
+    <string name="More_of_what_you_like">"Thêm những gì bạn thích "</string>
+    <string name="suggestions_based_on_what_you_re_liked_or_played">Đề xuất dựa trên những gì bạn đã thích hoặc đã chơi</string>
+    <string name="popular_albums_from_the_diplay_community">Bộ sưu tập phổ biến từ cộng đồng Diplay</string>
+    <string name="SONGS">BÀI HÁT</string>
+    <string name="Current_password">"Mật khẩu hiện tại  "</string>
+    <string name="New_password">"Mật khẩu mới  "</string>
+    <string name="Repeat_new_password">"Lặp lại mật khẩu mới  "</string>
+    <string name="UPDATE">"CẬP NHẬT "</string>
+    <string name="CLOSE">"ĐÓNG  "</string>
+    <string name="Add_a_playlist">"Thêm danh sách phát? "</string>
+    <string name="LYRIC">"LỜI BÀI HÁT  "</string>
+    <string name="New_playlist">Danh sách phát mới</string>
+    <string name="Confirm_password">"Xác nhận mật khẩu  "</string>
+    <string name="OK">OK</string>
+    <string name="Songs">"Bài hát "</string>
+    <string name="LIBRARY">"THƯ VIỆN  "</string>
+    <string name="LOCAL_STORAGE">LƯU TRỮ CỤC BỘ</string>
+    <string name="PLAYING_FROM">"PHÁT TỪ "</string>
+    <string name="PLAYING">"ĐANG PHÁT "</string>
+    <string name="A_SINGLE_SONG">BÀI HÁT ĐƠN</string>
+
 </resources>

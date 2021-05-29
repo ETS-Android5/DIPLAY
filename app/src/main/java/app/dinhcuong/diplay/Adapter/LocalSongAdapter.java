@@ -1,10 +1,7 @@
 package app.dinhcuong.diplay.Adapter;
 
 import android.content.Context;
-import android.media.MediaMetadata;
 import android.media.MediaMetadataRetriever;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -44,7 +39,7 @@ public class LocalSongAdapter extends RecyclerView.Adapter<LocalSongAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_library_song_cirlce_left, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_song_circle_small_left, parent, false);
         return new ViewHolder(view);
     }
 
@@ -99,7 +94,7 @@ public class LocalSongAdapter extends RecyclerView.Adapter<LocalSongAdapter.View
                     AppCompatActivity activity = (AppCompatActivity) v.getContext();
                     iSendDataListener = (ISendDataListener) activity;
                     //Use Interface to send data to MainActivity
-                    iSendDataListener.sendDataForPlayback(localSongArrayList.get(getAdapterPosition()), true, "LOCAL STORAGE", "LIBRARY");
+                    iSendDataListener.sendDataForPlayback(localSongArrayList.get(getAdapterPosition()), true, "", "");
                 }
             });
         }

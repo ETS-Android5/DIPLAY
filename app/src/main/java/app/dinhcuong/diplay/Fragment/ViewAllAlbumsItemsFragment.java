@@ -1,9 +1,12 @@
-package app.dinhcuong.diplay;
+package app.dinhcuong.diplay.Fragment;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,31 +16,29 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import app.dinhcuong.diplay.Adapter.PlaylistAdapter;
-import app.dinhcuong.diplay.Model.Playlist;
+import app.dinhcuong.diplay.Adapter.AlbumAdapter;
+import app.dinhcuong.diplay.Model.Album;
+import app.dinhcuong.diplay.R;
 import app.dinhcuong.diplay.Service.APIService;
 import app.dinhcuong.diplay.Service.DataService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ViewAllItemsFragment extends Fragment {
+public class ViewAllAlbumsItemsFragment extends Fragment {
     View view;
     CollapsingToolbarLayout collapsingToolbarLayout;
     CoordinatorLayout coordinatorLayout;
     RecyclerView recyclerView;
     Toolbar toolbar;
-
-    PlaylistAdapter playlistAdapter;
+    LottieAnimationView animationLoading;
+    AlbumAdapter albumAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,7 +75,7 @@ public class ViewAllItemsFragment extends Fragment {
         });
 
         //Set title for Toolbar
-        collapsingToolbarLayout.setTitle("PLAYLISTS");
+        collapsingToolbarLayout.setTitle(getResources().getString(R.string.ALBUMS));
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBarBig);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
     }
@@ -84,24 +85,26 @@ public class ViewAllItemsFragment extends Fragment {
         coordinatorLayout = view.findViewById(R.id.coordinator_layout_VAI);
         recyclerView = view.findViewById(R.id.recycler_view_VAI);
         toolbar = view.findViewById(R.id.toolbar_VAI);
+        animationLoading = view.findViewById(R.id.animation_loading);
     }
 
     private void getData() {
         DataService dataService = APIService.getService();
-        Call<List<Playlist>> callback = dataService.getDataPlaylist();
-        callback.enqueue(new Callback<List<Playlist>>() {
+        Call<List<Album>> callback = dataService.getDataAlbum();
+        callback.enqueue(new Callback<List<Album>>() {
             @Override
-            public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
-                ArrayList<Playlist> playlistArrayList = (ArrayList<Playlist>) response.body();
-                playlistAdapter = new PlaylistAdapter(getActivity(), playlistArrayList, "ALL");
+            public void onResponse(Call<List<Album>> call, Response<List<Album>> response) {
+                ArrayList<Album> albumArrayList = (ArrayList<Album>) response.body();
+                animationLoading.setVisibility(View.GONE);
+                albumAdapter = new AlbumAdapter(getActivity(), albumArrayList, "ALL");
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 recyclerView.setLayoutManager(linearLayoutManager);
-                recyclerView.setAdapter(playlistAdapter);
+                recyclerView.setAdapter(albumAdapter);
             }
 
             @Override
-            public void onFailure(Call<List<Playlist>> call, Throwable t) {
+            public void onFailure(Call<List<Album>> call, Throwable t) {
 
             }
         });

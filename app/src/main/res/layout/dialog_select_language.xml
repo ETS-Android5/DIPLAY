@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="top|center"
+    app:cardBackgroundColor="#303030"
+    app:cardCornerRadius="36dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/langlague_en"
+            android:text="@string/select_a_language"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/productsans_black"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+
+
+        <TextView
+            android:id="@+id/langlague_en"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/langlague_ru"
+            android:text="ENGLISH"
+            android:fontFamily="@font/productsans_bold"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:background="@drawable/button_setting"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/uk"
+            app:layout_constraintStart_toStartOf="@id/langlague_en"
+            app:layout_constraintTop_toTopOf="@id/langlague_en"
+            app:layout_constraintBottom_toBottomOf="@id/langlague_en"/>
+
+        <TextView
+            android:id="@+id/langlague_ru"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/langlague_vi"
+            android:text="РУССКИЙ"
+            android:fontFamily="@font/productsans_bold"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:background="@drawable/button_setting"/>
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/ru"
+            app:layout_constraintStart_toStartOf="@id/langlague_ru"
+            app:layout_constraintTop_toTopOf="@id/langlague_ru"
+            app:layout_constraintBottom_toBottomOf="@id/langlague_ru"/>
+
+        <TextView
+            android:id="@+id/langlague_vi"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/button_cancel"
+            android:text="TIẾNG VIỆT"
+            android:fontFamily="@font/productsans_bold"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:background="@drawable/button_setting"/>
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/vi"
+            app:layout_constraintStart_toStartOf="@id/langlague_vi"
+            app:layout_constraintTop_toTopOf="@id/langlague_vi"
+            app:layout_constraintBottom_toBottomOf="@id/langlague_vi"/>
+
+
+        <TextView
+            android:id="@+id/button_cancel"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:text="@string/CANCEL"
+            android:textSize="16sp"
+            android:fontFamily="@font/productsans_black"
+            android:textColor="@color/white"
+            android:background="@drawable/button_red_rounded"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

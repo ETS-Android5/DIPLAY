@@ -27,12 +27,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/playlists"/>
+                android:src="@drawable/items"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/gradient_toolbar_playlist" />
+                android:background="@drawable/gradient_toolbar_item" />
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
@@ -56,14 +56,31 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/layout_background_playlist">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_VAI"
-            android:paddingTop="30dp"
+        android:background="@drawable/layout_background_item">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_loading"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                app:lottie_fileName="43557-loading-musick-track.json"
+                android:alpha="0.2"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_VAI"
+                android:paddingTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.core.widget.NestedScrollView>
 
