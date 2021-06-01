@@ -88,10 +88,8 @@ public class LibraryPlaylistsFragment extends Fragment {
 
     private void getDataLikeSongs() {
         DataService dataService = APIService.getService();
-
         SharedPreferences pref = getActivity().getSharedPreferences("Auth", getActivity().MODE_PRIVATE);
         String id_user_SP = pref.getString("id_user","0");
-
         Call<String> callback = dataService.handlerGetNumberOfLikeSongs(id_user_SP, "getNumberOfLikeSongs");
         callback.enqueue(new Callback<String>() {
             @Override
@@ -100,12 +98,9 @@ public class LibraryPlaylistsFragment extends Fragment {
                 sizePlaylist = result;
                 String numbersOfSongsText = getActivity().getResources().getQuantityString(R.plurals.numberOfSongs, Integer.parseInt(result), Integer.parseInt(result));
                 textNumberOfLikeSongs.setText(numbersOfSongsText);
-
                 itemLikedSongs.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-
                         AppCompatActivity activity = (AppCompatActivity) getContext();
                         Bundle bundle = new Bundle();
                         String imagePlaylist = "https://ledhcg.000webhostapp.com/android_diplay/images/playlists/lovedSongs.jpg";
@@ -114,67 +109,50 @@ public class LibraryPlaylistsFragment extends Fragment {
                         DetailPlaylistLikedSongsItemFragment detailPlaylistLikedSongsItemFragment = new DetailPlaylistLikedSongsItemFragment();
                         detailPlaylistLikedSongsItemFragment.setArguments(bundle);
                         activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, detailPlaylistLikedSongsItemFragment).addToBackStack(null).commit();
-
                     }
                 });
             }
-
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-
             }
         });
-
-
         Call<List<Playlist>> callback2 = dataService.getDataLibraryPlaylist(id_user_SP, "likedSongs");
         callback2.enqueue(new Callback<List<Playlist>>() {
             @Override
             public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
                 playlistArrayList = (ArrayList<Playlist>) response.body();
             }
-
             @Override
             public void onFailure(Call<List<Playlist>> call, Throwable t) {
-
             }
         });
     }
 
     private void openDialogCreatePlaylist() {
-
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
         AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_library_create_playlist, null);
-
         EditText text_name_new_playlist = dialogView.findViewById(R.id.text_name_new_playlist);
-
-
         TextView button_cancel = dialogView.findViewById(R.id.button_cancel);
         TextView button_create = dialogView.findViewById(R.id.button_create);
-
         SharedPreferences pref = getActivity().getSharedPreferences("Auth", getActivity().MODE_PRIVATE);
         String name_user_SP = pref.getString("name_user","USER");
         String email_user_SP = pref.getString("email_user", "mail@diplay.com");
         String id_user_SP = pref.getString("id_user", "0");
-
-
         button_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
             }
         });
-
         button_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 animationLoading.setVisibility(View.VISIBLE);
-
                 if (text_name_new_playlist.getText().toString().trim().length() > 0){
-
                     String text_name = text_name_new_playlist.getText().toString();
                     DataService dataService = APIService.getService();
                     Call<String> callback = dataService.handlerCreatePlaylist(id_user_SP, text_name, "https://ledhcg.000webhostapp.com/android_diplay/images/playlists/playlist_created.png");
@@ -192,22 +170,16 @@ public class LibraryPlaylistsFragment extends Fragment {
                                 Toast.makeText(getContext(), "Create playlist fail!", Toast.LENGTH_SHORT).show();
                             }
                         }
-
                         @Override
                         public void onFailure(Call<String> call, Throwable t) {
-
                         }
                     });
                 } else {
                     animationLoading.setVisibility(View.INVISIBLE);
                     Toast.makeText(getContext(), "Invalid playlist's name!", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
-
-
         alertDialog.getWindow().setContentView(dialogView);
         alertDialog.getWindow().setDimAmount(0.85f);
         alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE|WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);

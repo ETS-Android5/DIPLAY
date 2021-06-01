@@ -109,16 +109,11 @@ public class Fragment_Search extends Fragment {
     }
 
     private void getDataSearch() {
-
         clear();
-
-
         resultSearch.setVisibility(View.VISIBLE);
         String text_content = getContext().getResources().getString(R.string.search_with);
         resultSearch.setText(text_content + " \""+ search_src_text.getText().toString() + "\"");
-
         DataService dataService = APIService.getService();
-
         Call<List<Album>> callbackAlbum = dataService.handlerSearchAlbum(search_src_text.getText().toString(), "album");
         callbackAlbum.enqueue(new Callback<List<Album>>() {
             @Override
@@ -136,15 +131,11 @@ public class Fragment_Search extends Fragment {
                     noDataAlbum.setVisibility(View.VISIBLE);
                     lottieAnimationView2.setVisibility(View.GONE);
                 }
-
             }
-
             @Override
             public void onFailure(Call<List<Album>> call, Throwable t) {
-
             }
         });
-
         Call<List<Song>> callbackSong = dataService.handlerSearchSong(search_src_text.getText().toString(), "song");
         callbackSong.enqueue(new Callback<List<Song>>() {
             @Override
@@ -162,12 +153,9 @@ public class Fragment_Search extends Fragment {
                     noDataSong.setVisibility(View.VISIBLE);
                     lottieAnimationView.setVisibility(View.GONE);
                 }
-
             }
-
             @Override
             public void onFailure(Call<List<Song>> call, Throwable t) {
-
             }
         });
 
@@ -188,12 +176,9 @@ public class Fragment_Search extends Fragment {
                     noDataPlaylist.setVisibility(View.VISIBLE);
                     lottieAnimationView3.setVisibility(View.GONE);
                 }
-
             }
-
             @Override
             public void onFailure(Call<List<Playlist>> call, Throwable t) {
-
             }
         });
     }

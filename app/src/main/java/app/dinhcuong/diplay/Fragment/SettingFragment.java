@@ -28,6 +28,7 @@ import java.util.Locale;
 
 import app.dinhcuong.diplay.Activity.LoginActivity;
 import app.dinhcuong.diplay.Activity.MainActivity;
+import app.dinhcuong.diplay.Model.User;
 import app.dinhcuong.diplay.R;
 import app.dinhcuong.diplay.Service.APIService;
 import app.dinhcuong.diplay.Service.DataService;
@@ -145,9 +146,7 @@ public class SettingFragment extends Fragment {
                     SharedPreferences pref = getActivity().getSharedPreferences("Auth", getActivity().MODE_PRIVATE);
                     String password_user_SP = pref.getString("password_user","");
                     String id_user_SP = pref.getString("id_user","0");
-
                     if(password_confirm.getText().toString().equals(password_user_SP)){
-
                         DataService dataService = APIService.getService();
                         Call<String> callback = dataService.handlerDeleteUser(id_user_SP, "delete");
                         callback.enqueue(new Callback<String>() {
@@ -168,10 +167,8 @@ public class SettingFragment extends Fragment {
                                     alertDialog.dismiss();
                                 }
                             }
-
                             @Override
                             public void onFailure(Call<String> call, Throwable t) {
-
                             }
                         });
                     } else {
@@ -197,41 +194,30 @@ public class SettingFragment extends Fragment {
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View dialogView = inflater.inflate(R.layout.dialog_confirm, null);
-
-
         TextView button_cancel = dialogView.findViewById(R.id.button_cancel);
         TextView button_confirm = dialogView.findViewById(R.id.button_confirm);
         TextView content = dialogView.findViewById(R.id.text_confirm);
-
         String text_content = getContext().getResources().getString(R.string.do_you_want_to_logout);
         content.setText(text_content);
-
-
         button_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
             }
         });
-
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences settings = getContext().getSharedPreferences("Auth", Context.MODE_PRIVATE);
                 settings.edit().clear().commit();
-
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
-
-
         alertDialog.getWindow().setContentView(dialogView);
         alertDialog.getWindow().setDimAmount(0.85f);
         alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE|WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-
-
     }
 
     private void openDialogEditPassword() {
@@ -367,35 +353,86 @@ public class SettingFragment extends Fragment {
                         if (name_user.getText().toString().equals(name_user_SP) && email_user.getText().toString().equals(email_user_SP)){
                             Toast.makeText(getContext(), "No changes detected!", Toast.LENGTH_SHORT).show();
                         } else {
-                            DataService dataService = APIService.getService();
-                            Call<String> callback = dataService.handlerEditInfo(id_user_SP, name_user.getText().toString(), email_user.getText().toString(), "editInfo");
-                            callback.enqueue(new Callback<String>() {
-                                @Override
-                                public void onResponse(Call<String> call, Response<String> response) {
-                                    String result = response.body();
-                                    if(result.equals("SUCCESS")){
-                                        Toast.makeText(getContext(), "Information changed successfully!", Toast.LENGTH_SHORT).show();
+                            //If email not change
+                            if(email_user.getText().toString().equals(email_user_SP)){
+                                DataService dataService = APIService.getService();
+                                Call<String> callback = dataService.handlerEditInfo(id_user_SP, name_user.getText().toString(), email_user.getText().toString(), "editInfo");
+                                callback.enqueue(new Callback<String>() {
+                                    @Override
+                                    public void onResponse(Call<String> call, Response<String> response) {
+                                        String result = response.body();
+                                        if(result.equals("SUCCESS")){
+                                            Toast.makeText(getContext(), "Information changed successfully!", Toast.LENGTH_SHORT).show();
 
-                                        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("Auth", getActivity().MODE_PRIVATE); // 0 - for private mode
-                                        SharedPreferences.Editor editor = pref.edit();
-                                        editor.putString("email_user", email_user.getText().toString());
-                                        editor.putString("name_user", name_user.getText().toString());
-                                        editor.commit();
+                                            SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("Auth", getActivity().MODE_PRIVATE); // 0 - for private mode
+                                            SharedPreferences.Editor editor = pref.edit();
+                                            editor.putString("email_user", email_user.getText().toString());
+                                            editor.putString("name_user", name_user.getText().toString());
+                                            editor.commit();
 
-                                        updateInfo(name_user.getText().toString(),email_user.getText().toString());
+                                            updateInfo(name_user.getText().toString(),email_user.getText().toString());
 
-                                        alertDialog.dismiss();
-                                    } else {
-                                        Toast.makeText(getContext(), "The information was changed unsuccessfully!", Toast.LENGTH_SHORT).show();
-                                        alertDialog.dismiss();
+                                            alertDialog.dismiss();
+                                        } else {
+                                            Toast.makeText(getContext(), "The information was changed unsuccessfully!", Toast.LENGTH_SHORT).show();
+                                            alertDialog.dismiss();
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onFailure(Call<String> call, Throwable t) {
+                                    @Override
+                                    public void onFailure(Call<String> call, Throwable t) {
 
-                                }
-                            });
+                                    }
+                                });
+                            } else {
+                                DataService dataService = APIService.getService();
+                                Call<User> callback = dataService.handlerLogin(email_user.getText().toString(), "", "checkEmail");
+                                callback.enqueue(new Callback<User>() {
+                                    @Override
+                                    public void onResponse(Call<User> call, Response<User> response) {
+                                        User result = response.body();
+                                        if (result.getResult()){  //Email exits
+                                            Toast.makeText(getContext(), "Email already exists!", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            DataService dataService = APIService.getService();
+                                            Call<String> callback = dataService.handlerEditInfo(id_user_SP, name_user.getText().toString(), email_user.getText().toString(), "editInfo");
+                                            callback.enqueue(new Callback<String>() {
+                                                @Override
+                                                public void onResponse(Call<String> call, Response<String> response) {
+                                                    String result = response.body();
+                                                    if(result.equals("SUCCESS")){
+                                                        Toast.makeText(getContext(), "Information changed successfully!", Toast.LENGTH_SHORT).show();
+
+                                                        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("Auth", getActivity().MODE_PRIVATE); // 0 - for private mode
+                                                        SharedPreferences.Editor editor = pref.edit();
+                                                        editor.putString("email_user", email_user.getText().toString());
+                                                        editor.putString("name_user", name_user.getText().toString());
+                                                        editor.commit();
+
+                                                        updateInfo(name_user.getText().toString(),email_user.getText().toString());
+
+                                                        alertDialog.dismiss();
+                                                    } else {
+                                                        Toast.makeText(getContext(), "The information was changed unsuccessfully!", Toast.LENGTH_SHORT).show();
+                                                        alertDialog.dismiss();
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onFailure(Call<String> call, Throwable t) {
+
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<User> call, Throwable t) {
+                                        Toast.makeText(getContext(), "Throwable"+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+
                         }
                     } else {
                         Toast.makeText(getContext(), "Current password is incorrect!", Toast.LENGTH_SHORT).show();

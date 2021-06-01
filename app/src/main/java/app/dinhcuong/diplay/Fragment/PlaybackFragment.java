@@ -934,23 +934,18 @@ public class PlaybackFragment extends Fragment {
     }
 
     class PlaySong extends AsyncTask<String, Void, String>{
-
         @Override
         protected String doInBackground(String... strings) {
             return strings[0];
         }
-
         @Override
         protected void onPostExecute(String song) {
             super.onPostExecute(song);
-
             //Check if has 1 mediaPlayer is playing -> stop
-
             if (mediaPlayer != null){
                 mediaPlayer.stop();
                 mediaPlayer.reset();
             }
-
             //Create new mediaPlayer
             try {
                 mediaPlayer = new MediaPlayer();
@@ -973,7 +968,6 @@ public class PlaybackFragment extends Fragment {
             }
             mediaPlayer.start();
             buttonPlay.setBackgroundResource(R.drawable.ic_fluent_pause_48_filled);
-
             timeSong();
             updateTime();
         }
