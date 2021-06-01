@@ -1,18 +1,14 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/ledhcg/MireaWeb">
+  <a href="https://github.com/ledhcg/DIPLAY">
     <img src="Screenshot/logo_thum.png" alt="Logo" width="80" height="auto">
   </a>
 
   <h3 align="center">JAVA PROJECT</h3>
 
   <p align="center">
-    MIREA - RUSSIAN TECHNOLOGICAL UNIVERSITY
-    <br />
-    <a href="http://mireaweb.dinhcuong.me/"><strong>View our website »</strong></a>
-    <br />
-    <br />
+    MUSSIC APPLICATION - DIPLAY
   </p>
 </p>
 
@@ -27,82 +23,54 @@
   <br/>
 </p>
 
-<strong>MIREAWEB</strong> is a one-month development project focusing on building an educational website. This is a small project in the subject <i>Технология разработки программных приложений</i> at the university. The project is implemented by a group of Vietnamese students studying at <i>RUSSIAN TECHNOLOGICAL UNIVERSITY</i>. Website is an english version of <i>[mirea.ru](https://mirea.ru)</i> with redesigned interface and functionality. We build a website with the ability to optimize the user interface space, bring a modern and intuitive interface, and convenient functions for user interaction.
+Приложение для музыкального плеера - один из mp3-плееров для Android. Музыка, аудиофайлы воспроизводятся гладко. Это красиво и бесплатно.
+Приложение поддерживает музыкальные форматы: MP3
+Приложение было организовано, чтобы легче слушать музыку, «Музыкальный проигрыватель» быстро просматривает всю музыку на вашем мобильном телефоне.
 
-### Access modes with login
+### Functions 
 
-- Student/Teacher
-- Editor
-- Admin
-
-### Functions without login
-
-- Check information about university
-- Read the latest university news
-
-### Functions with login
-
-- Check information about university
-- Read the latest university news
-- [For all user] Change avatar, password
-- [Only for student] Check learning results
-- [Only for editor] Add, edit or delete posts
-- [Only for admin] Access dashboard, manage information about students, groups, disciplines and subjects
+Особенности бесплатного музыкального проигрывателя - mp3-плеер:
+-	Обнаруживать все музыкальные файлы на Android-телефоне.
+-	Offline музыкальный проигрыватель, плейер, аудиоплеер, мощный mp3-плеер с высоким качеством.
+-	В меню есть много элементов, таких как: альбом, исполнитель, жанр, песня, плейлист, исполнитель, каталог и альбом.
+-	Хорошо работайте с гарнитурой или наушниками. Все кнопки на гарнитуре поддерживались. Не прикасайтесь к устройству.
+-	Музыкальная библиотека. Будет показана вся аудио-музыка, песни в библиотеке.
+-	Функция поиска. Поиск по названию (название песни), альбом, исполнитель, плейлист.
+-	Плейлист. Пользователи могут добавлять новый плейлист, редактировать или удалять старый плейлист. Добавьте песню в список воспроизведения. Имеет последние плейлисты.
+-	Управление Bluetooth. Совместимость с наушниками или гарнитурой Bluetooth. Поддержка всех элементов управления, таких как перемотка назад, далее, пауза, остановка, воспроизведение
+-	Поддержка mp3-файла. Mp3 - самый популярный музыкальный формат. Таким образом, мы также называем mp3-плеер или аудиоплеер.
+-	Покажите фотографию песни, исполнителя и обложки альбома.
+-	Музыкальный онлайн-плеер с регулярно обновляемыми песнями.
+-	Создавайте аккаунты быстро и удобно для пользователей.
 
 ### Languages used
 
-- PHP
-- HTML/CSS/Javascript
+- JAVA
+- XML
 
-### Vendors used
+## Recommendations and supports
 
-- [Bootstrap](https://getbootstrap.com)
-- [JQuery](https://jquery.com)
-- [CKEditor](https://ckeditor.com)
-- [FontAwesome](https://fontawesome.com)
-- [Flickity](https://flickity.metafizzy.co)
-- [Toastify](https://apvarun.github.io/toastify-js)
-- [GoogleFont](https://fonts.google.com/)
-- [GoogleMapAPI](https://developers.google.com/maps/documentation/javascript/overview)
-- [FacebookAPI](https://developers.facebook.com)
-
-<!-- GETTING STARTED -->
-
-## Recommendations
-
-Website is only optimized on desktop platforms. Please use the desktop when accessing the website.
-For the best experience, we recommend using the following chromium browsers:
-
-- Microsoft Edge
-- Chrome
-
-## Usage
-
-Log in with the demo accounts available to take full advantage of the features.
-
-### Demo accounts:
-
-- [For student] Email: le.d@edu.mirea.ru | Password: 123456789
-- [For editor] Email: editor@edu.mirea.ru | Password: 123456789
-- [For admin] Email: admin@edu.mirea.ru | Password: 123456789
+-	Theme: Dark theme
+-	Android version: Newer than or equal to Andorid 8.0 (API level 26)
+-	Language: English, Russian, Vietnam.
 
 ### Demo screenshots
 
 <p align="center">
   <br/>
-  <img src="images/background/demo_readme_1.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
+  <img src="Screenshot/Home1.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
   <br/>
 </p>
 
 <p align="center">
   <br/>
-  <img src="images/background/demo_readme_2.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
+  <img src="Screenshot/Home2.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
   <br/>
 </p>
 
 <p align="center">
   <br/>
-  <img src="images/background/demo_readme_3.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
+  <img src="Screenshot/Home3.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
   <br/>
 </p>
 
@@ -140,17 +108,15 @@ Log in with the demo accounts available to take full advantage of the features.
 
 <!-- CONTACT -->
 
-## Teamwork
+## Author
 
-1. MAIN PAGE - LE DINH CUONG [github@ledhcg](https://github.com/ledhcg)
-2. ADMIN PAGE - VU XUAN CANH [github@xuancanhit99](https://github.com/xuancanhit99)
-3. CONTENT - NGUYEN XUAN BACH [github@nekokami99](https://github.com/nekokami99)
-4. CONTENT - CAO DUC MANH [github@macmie2411999](https://github.com/macmie2411999)
+-	Author: Le Dinh Cuong (Ле Динь Кыонг)
+-	Email: dinhcuong.firewin99@gmail.com
+-	Github: ledhcg/DIPLAY (github.com)
+-	Website: dinhcuong.me
 
 <!-- ACKNOWLEDGEMENTS -->
 
 ## Acknowledgements
 
 - [000webhost](https://www.000webhost.com)
-- [GoDaddy](https://godaddy.com/)
-- [dinhcuong.me](https://dinhcuong.me/)
