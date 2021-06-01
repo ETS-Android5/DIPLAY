@@ -16,14 +16,7 @@
 
 ## About The Project
 
-<p align="center">
-  <br/>
-  <img src="images/background/demo_readme.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
-  <br/>
-  <br/>
-</p>
-
-Приложение для музыкального плеера - один из mp3-плееров для Android. Музыка, аудиофайлы воспроизводятся гладко. Это красиво и бесплатно.
+  Приложение для музыкального плеера - один из mp3-плееров для Android. Музыка, аудиофайлы воспроизводятся гладко. Это красиво и бесплатно.
 Приложение поддерживает музыкальные форматы: MP3
 Приложение было организовано, чтобы легче слушать музыку, «Музыкальный проигрыватель» быстро просматривает всю музыку на вашем мобильном телефоне.
 
@@ -76,19 +69,19 @@
 
 <p align="center">
   <br/>
-  <img src="images/background/demo_readme_4.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
+  <img src="Screenshot/Playback1.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
   <br/>
 </p>
 
 <p align="center">
   <br/>
-  <img src="images/background/demo_readme_5.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
+  <img src="Screenshot/Playback2.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
   <br/>
 </p>
 
 <p align="center">
   <br/>
-  <img src="images/background/demo_readme_6.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
+  <img src="Screenshot/Playback3.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
   <br/>
 </p>
 
@@ -100,7 +93,7 @@
 
 <p align="center">
   <br/>
-  <img src="images/background/demo_readme_8.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
+  <img src="Screenshot/ViewFull.png" alt="Logo" width="80%" style="border-radius: 10px" height="auto">
   <br/>
 </p>
 
@@ -112,8 +105,8 @@
 
 -	Author: Le Dinh Cuong (Ле Динь Кыонг)
 -	Email: dinhcuong.firewin99@gmail.com
--	Github: ledhcg/DIPLAY (github.com)
--	Website: dinhcuong.me
+-	Github: [github@ledhcg](https://github.com/ledhcg)
+-	Website: [dinhcuong.me](https://dinhcuong.me)
 
 <!-- ACKNOWLEDGEMENTS -->
 
