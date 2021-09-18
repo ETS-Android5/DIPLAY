@@ -8,7 +8,7 @@
   <h3 align="center">JAVA PROJECT</h3>
 
   <p align="center">
-    MUSSIC APPLICATION - DIPLAY
+    MUSIC APPLICATION - DIPLAY
   </p>
 </p>
 
